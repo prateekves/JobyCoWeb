@@ -1,0 +1,143 @@
+/* ---- Medium Devices and Below ----- */
+@media (max-width: 992px) {
+    .track {
+        margin: 25px 0;
+        border-radius: 0;
+        position: relative;
+        transform: none;
+        top: 0;
+        right: 0;
+        float: none;
+        border: none;
+
+    }
+
+    form label {
+        min-width: 14%;
+        margin-top: 15px;
+    }
+
+    .staff-image {
+        width: 22.4%;
+    }
+
+    .staff-image .wrap-image {
+        height: 180px;
+    }
+
+    input.quick-quote-submit {
+        margin-top: 15px;
+        margin-left: -15px;
+        width: 150px;
+        float: right;
+    }
+}
+
+@media (max-width: 767px) {
+    .header {
+        padding: 5px 10px;
+        border-bottom: 1px solid #F7F7F7;
+    }
+
+    .header {
+        padding-top: 5px;
+    }
+
+    .menu-button i {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 12;
+        padding: 6px 12px;
+        background: transparent;
+        border: 1px solid #C0C2C7;
+    }
+
+    .header div.menu {
+        position: absolute;
+        left: -220px;
+        z-index: 12;
+        background: #FFFFFF;
+        width: 200px;
+        height: 100vh;
+        border-right: 1px solid #F7F7F7;
+
+    }
+
+    img.logo {
+        height: 42px;
+        float: right;
+    }
+
+    .header div.menu ul {
+        padding: 65px 0;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        transform: translateY(0);
+    }
+
+    .header div.menu ul li {
+        display: block;
+
+        border-left: none;
+        border-bottom: 1px solid #F7F7F7;
+    }
+
+    .header div.menu ul li a {
+        padding: 12px 12px !important;
+        display: block;
+    }
+
+    .header div.menu ul li:nth-child(6) {
+        border: none;
+    }
+
+    .block-1 {
+        padding-bottom: 30px;
+    }
+
+    .block-1:last-child {
+        padding-bottom: 0;
+    }
+
+    .theme-1 {
+        padding: 30px 0;
+    }
+
+    form label {
+        min-width: 30%;
+        margin-top: 15px;
+    }
+
+    /* staff profiles --- */
+    .staff-image {
+        width: 20%;
+    }
+
+    .staff-image .wrap-image {
+        height: 120px;
+    }
+
+    /* quote bar -------------------- */
+    .bar a p {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .bx-wrapper {
+        height: 50px;
+    }
+
+    .bx-controls {
+        display: none;
+    }
+
+    .theme-2 {
+        padding: 0;
+    }
+}
+
+

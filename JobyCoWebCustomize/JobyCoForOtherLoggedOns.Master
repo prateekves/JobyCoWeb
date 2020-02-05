@@ -1,0 +1,174 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="JobyCoForOtherLoggedOns.master.cs" Inherits="JobyCoWebCustomize.JobyCoForOtherLoggedOns" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="/images/favicon.png"/>
+
+    <title>Jobyco</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="/css/custom.css" rel="stylesheet"/>
+    
+    <!-- tel flag styles for this template -->
+    <link href="/css/font-awesome.css" rel="stylesheet"/>
+    
+    <!-- font awesome styles for this template -->
+    <link rel="stylesheet" href="/css/intlTelInput.css"/>
+    
+    <!-- drawer styles for this template -->
+    <link href="/css/drawer.css" rel="stylesheet"/>
+
+    <!-- multiForm styles for this template -->
+    <link href="/css/multiForm.css" rel="stylesheet"/>
+
+    <!-- media query styles for this template -->
+    <link href="/css/media_query.css" rel="stylesheet" />
+
+    <!-- bounce in styles for this template -->
+    <link href="/css/flash.css" rel="stylesheet" />
+
+    <!-- google font for this template
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700|Montserrat:200,300,400,500,600,700,800,900|Open+Sans:300,400,600,700,800" rel="stylesheet"/> -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->    
+    <!-- Placed at the end of the document so the pages load faster-->    
+    <script src="/js/jquery-2.2.4.min.js"></script>
+    
+    <script>
+        $(document).ready(function () {
+            $("#navbar > ul > li").removeClass("active");
+        });
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="drawer drawer--left drawer-close darkBG">
+    <form id="form1" runat="server">
+        <div>
+
+         <header role="banner">
+            <button type="button" class="drawer-toggle drawer-hamburger flash">
+              <span class="sr-only">toggle navigation</span>
+              <span class="drawer-hamburger-icon"></span>
+            </button>
+        
+            <nav class="drawer-nav" role="navigation">
+              <ul class="drawer-menu">
+                <li><a class="drawer-brand" href="/Dashboard.aspx"><img src="/images/logo.svg" alt="" class="img-responsive" /></a></li>
+                <li class="active"><a class="drawer-menu-item dash" href="/Dashboard.aspx">Dashboard</a></li>
+                <li><a class="drawer-menu-item agent" href="/ViewAllOfMyBookings.aspx">View My Bookings</a></li>
+<%--                <li><a class="drawer-menu-item cust" href="/ViewAllOfMyQuotations.aspx">View My Quotations</a></li>--%>
+                <li><a class="drawer-menu-item market" href="http://promotionsoftheday.com" target="_blank">Marketplace</a></li>
+              </ul>
+              
+              <ul class="drawer-menu lower-drawer-menu">
+                <!--<li><a class="drawer-menu-item sett" href="#">Settings</a></li>-->
+                <!--<li><a class="drawer-menu-item supp" href="#">Support</a></li>-->
+              </ul>
+            </nav>
+        </header>
+
+   	<!-- content -->
+    <main role="main">
+        <section class="item">
+            <section class="topBar affix">
+                <div class="col-md-2">
+                    <a class="navbar-brand" href="/Dashboard.aspx"><img src="/images/logo.svg" alt="" class="img-responsive" /></a>
+                </div>
+                <div class="col-md-8">
+                    <div class="navbar-default">
+                         <div id="navbar" class="navbar-collapse collapse">
+                          <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/Dashboard.aspx">Home</a></li>
+                            <li id="AboutUs"><a href="/LoggedAboutUs.aspx">About</a></li>
+<%--                            <li id="QuotePage"><a href="/Quote.aspx">Quote</a></li>--%>
+                            <li id="MarketPlace"><a href="http://promotionsoftheday.com">Quote</a></li>
+                            <li id="ContactUs"><a href="/LoggedContactUs.aspx">Contact</a></li>
+					        <li id="Careers"><a href="/LoggedCareers.aspx">Careers</a></li>
+					        <li id="FAQs"><a href="/LoggedFAQs.aspx">Help</a></li>
+                          </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <ul class="acntLog">
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                              <asp:Label ID="lblLoggedInUser" runat="server" Text=""></asp:Label>
+                              <span class="glyphicon glyphicon-user pull-right userID"></span></a>
+
+                          <ul class="dropdown-menu">
+                            <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Messages <span class="badge pull-right"></span></a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <button type="button" id="lnkLogout" runat="server" onserverclick="lnkLogout_Click">Sign Out</button>
+                                    <span class="glyphicon glyphicon-log-out pull-right"></span>
+                                </a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                </div>
+            </section>
+            
+            <section class="innerNav-sec">
+                <!-- Static navbar -->
+                <nav class="navbar navbar-default navbar-static-top">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="navbar-toggler-icon"><i class="fa fa-link" aria-hidden="true"></i></span>
+                        <span class="mnu_txt">Quick Links</span>
+                        </button>
+                    </div>
+                </nav>
+                <div class="col-md-12 col-sm-12">
+                    <div class="deliOpt">
+                    	<div class="row">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+                            </asp:ContentPlaceHolder>
+
+						</div>                        
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+        </div>
+    </form>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/drawer.min.js"></script>
+    <script src="/js/intlTelInput.min.js"></script>
+    <script src="/js/iscroll.js"></script>
+    <script src="/js/custom.js"></script>
+
+    <script src="/Scripts/allfunctions.js"></script>
+
+    <link href="/Styles/jquery-confirm.min.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-confirm.min.js"></script>
+
+</body>
+</html>

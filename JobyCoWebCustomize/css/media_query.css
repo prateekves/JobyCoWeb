@@ -1,0 +1,204 @@
+/*======media_query======*/
+@media (max-width: 767px) {
+	.navbar-toggle{ margin:0; border:none; }
+	.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{ background:none; }
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form{ margin-top:5px; }
+	.navbar-default .navbar-toggle .icon-bar{ background:#fff; }
+	.navbar { padding: 20px 15px;  }
+	.bgOverlay{ height:100%; }
+	.formContent{ margin-top:12rem; width:90%; padding:10px 0; height:130px; }
+    .indexSign input[type="text"] { padding: 9.5px 6px; font-size:12px; }
+	.formContent h4 {font-size: 18px;margin-bottom: 15px; line-height:24px; }
+	.indexSign{ width:90%; margin-bottom:0; }
+	.inSGNbtn{ width:108px; padding:6px 6px 7px; letter-spacing:0px; font-size:12px; }
+	.fromPad{ margin:0 auto; padding:4rem 15px 0; width: 100%; height:auto; }
+	.whtLay{ height:100% !important; }
+	h5{font-size: 18px; margin-bottom: 5px;}
+	.loginForm label { font-size: 10px !important; }
+	.loginForm input[type="email"], .loginForm input[type="password"],
+	.loginForm input[type="text"], .loginForm input[type="tel"]{
+		font-size: 12px !important; padding: 8px 12px; margin-bottom: 10px;
+	}
+	.frogotPass, .signUPlink{float: left; margin-left: 5px;}
+	.loginForm .lg-sg-BTN {height: 35px !important;margin-bottom: 5px;font-size: 12px;line-height: 35px;}
+	.infographHldr{ padding: 15px; }
+	
+	.drawer--left .drawer-hamburger{ left: 1rem !important; }
+	.drawer--left.drawer-open .drawer-hamburger { left: 22.25rem !important; }
+	.topBar {padding: 12px 10px 12px 34px;}
+	.innerNav-sec .navbar{
+		margin-left: -15px;
+		top: 5.5rem;
+		padding-left: 0;
+	}
+	
+	.navbar-toggler{ width:100%; }
+	
+	.mnu_txt {
+		color: #0062AC;
+		font-family: "Montserrat",sans-serif;
+		font-size: 15px;
+		font-weight: 600;
+	}
+	
+	.fixed-left{ display:none; }
+	.list__item{ width:100%; }
+	
+	.navbar-toggler {
+		border-color: rgba(255, 255, 255, 0.1);
+		color: #0062AC;
+		background: rgba(255,255,255,0.6);
+		border-radius: 0;
+		margin: 8px 0;
+		width: 100%;
+		text-align: left;
+	}
+	
+	.mnu_txt {
+		color: #fff;
+		font-size: 15px;
+		font-family: 'Lato', sans-serif;
+		text-transform:uppercase;
+		letter-spacing:1px;
+		font-weight:600;
+		text-shadow:1px 1px 1px rgba(0,0,0,0.4);
+	}
+	.navbar-toggler-icon {
+		background: none;
+		width: auto;
+		height: auto;
+		font-size: 17px;
+		float: left;
+		margin-right: 7px;
+		text-shadow:1px 1px 1px rgba(0,0,0,0.4);		
+	}
+	.innerNav-sec .navbar{line-height: 3;}
+	.innerNav-sec .navbar .navbar-toggle:hover, .innerNav-sec .navbar .navbar-toggle:focus{ background: #FCA311; }
+	.innerNav-sec .navbar .navbar-toggle{
+		padding: 0 10px;
+		width: 100%;
+		float: left;
+		text-align: left;
+		background: #FCA311;
+		border-radius: 0;
+		border-top: none;
+		margin-top: -1px;
+		color: #fff;
+	}
+	.innerNav-sec .navbar .navbar-nav { margin: 0px; }
+    .innerNav-sec .navbar { margin-left: 0px; }
+	.innerNav-sec .navbar-collapse{ margin-top:0px; }
+	.innerNav-sec .navbar-default .navbar-nav > li > a{ margin-right:0; }
+	.lower-drawer-menu{ position:relative; }
+	.drawer-menu .drawer-menu-item{ padding:10px 0 8px 40px; }
+	item::after{top: 7px;}
+	.drawer-menu .drawer-menu-item::after{ height:auto; }
+    .deliOpt {padding: 100px 0px;}
+    #msform fieldset {width: 100%;margin: 0;}
+    #myTable tr td { width: 100%; }
+    .roundedTwo { margin-bottom: 10px; }
+    .acntLog > li { min-width: 146px; }
+    .acntLog li.dropdown a { letter-spacing: 1px; }
+    .acntLog .dropdown ul.dropdown-menu { left: -43px; }
+    #lblLoggedInUser { margin-right: 5px; }
+    .ibtnDel { margin-bottom: 25px; }
+    #msform fieldset { padding: 20px 10px; }
+    .tblInfo.table{ font-size:11px; }
+    .ErrMsg{ width:100% !important; }
+    .table-responsive{
+        width:90%;
+        margin:0 auto;
+        background:rgba(252, 163, 17, 0.20);
+        border:1px solid rgba(0,0,0,0.6);
+    }
+
+    .table-responsive > #tblConfirmItems > thead > tr > th,
+    .table-responsive > #tblConfirmItems > tbody > tr > th,
+    .table-responsive > #tblConfirmItems > tfoot > tr > th,
+    .table-responsive > #tblConfirmItems > thead > tr > td,
+    .table-responsive > #tblConfirmItems > tbody > tr > td,
+    .table-responsive > #tblConfirmItems > tfoot > tr > td{
+        white-space: pre-wrap;
+    }
+    .jsTblH tr th{font-size:12px;}
+}
+
+@media (min-width: 320px) and (max-width: 340px) {
+	.inSGNbtn {padding: 6px 6px 4px !important; font-size: 11px;}
+	.indexSign input[type="email"] {padding: 8px 20px 8px 10px;font-size: 12px;}
+	.formContent h4{ font-size:17px !important; }
+    .indexSign input[type="text"] { padding: 7px 6px; font-size:12px; }
+}
+@media (min-width: 768px) and (max-width: 990px) {
+	.list__item .labelHdng{ font-size:16px; }
+    .list__item .label{ padding-bottom: 15px; min-height: 285px; }
+    .label:before {
+        right: 3px;
+        bottom: 165px;
+        background: rgba(255,255,255,0.75);
+        border-color: #FCA311;
+    }
+    .radio-btn:checked ~ .label:before {line-height: 18px; padding-left: 3px; }
+    #msform fieldset{ width: 100%; margin: 0; }
+    #progressbar{ margin-left:0; }
+    #msform label{font-size: 11px; letter-spacing: 0;}
+    .table-responsive{
+        width:90%;
+        margin:0 auto;
+        background:rgba(252, 163, 17, 0.20);
+        border:1px solid rgba(0,0,0,0.6);
+    }
+    .cmnLabel{font-size: 11px; letter-spacing: 0;}
+    .navbar-default .navbar-nav > li > a{padding: 5px 15px; font-size: 12px;}
+    .formContent { width: 70%; }
+    #lblLoggedInUser { margin-right: 5px; }
+    .fromPad{ width:100%; }
+}
+@media (min-width: 990px) and (max-width: 1199px){
+	
+}
+
+@media (max-width: 500px){
+
+  #tblConfirmItems {
+    border: 0;
+    background:rgba(0,0,0,0.6);
+  }
+  table#tblConfirmItems caption {
+    font-size: 1.3em;
+  }
+  #tblConfirmItems thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  #tblConfirmItems tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  #tblConfirmItems td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: right;
+  }
+  #tblConfirmItems td:before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  #tblConfirmItems td:last-child {
+    border-bottom: 0;
+  }
+}

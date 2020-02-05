@@ -1,0 +1,223 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.master.cs" Inherits="JobyCoWeb.Default" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>JobyCo Website</title>
+
+    <!-- App styles -->
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="fonts/pe-icon-7-stroke/css/helper.css" rel="stylesheet" />
+    <link href="styles/style.css" rel="stylesheet" />
+    <link href="styles/password.css" rel="stylesheet" />
+    <link href="styles/static_custom.css" rel="stylesheet" />
+
+    <!-- Vendor Styles -->
+    <link href="vendor/sweetalert/lib/sweet-alert.css" rel="stylesheet" />
+    <link href="vendor/toastr/build/toastr.min.css" rel="stylesheet" />
+    <link href="vendor/fontawesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="vendor/metisMenu/dist/metisMenu.css" rel="stylesheet" />
+    <link href="vendor/animate.css/animate.css" rel="stylesheet" />
+    <link href="vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        
+    <!-- Vendor scripts -->
+    <script src="vendor/jquery/dist/jquery.min.js"></script>
+    <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="vendor/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery-flot/jquery.flot.js"></script>
+    <script src="vendor/jquery-flot/jquery.flot.resize.js"></script>
+    <script src="vendor/jquery-flot/jquery.flot.pie.js"></script>
+    <script src="vendor/flot.curvedlines/curvedLines.js"></script>
+    <script src="vendor/jquery.flot.spline/index.js"></script>
+    <script src="vendor/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="vendor/iCheck/icheck.min.js"></script>
+    <script src="vendor/peity/jquery.peity.min.js"></script>
+    <script src="vendor/sparkline/index.js"></script>
+    <script src="vendor/sweetalert/lib/sweet-alert.min.js"></script>
+    <script src="vendor/toastr/build/toastr.min.js"></script>
+
+    <!-- App scripts -->
+    <script src="scripts/allfunctions.js"></script>
+    <script src="Scripts/homer.js"></script>
+    <script src="Scripts/charts.js"></script>
+
+    <script>
+
+    $(function () {
+
+        /**
+         * Flot charts data and options
+         */
+        var data1 = [ [0, 55], [1, 48], [2, 40], [3, 36], [4, 40], [5, 60], [6, 50], [7, 51] ];
+        var data2 = [ [0, 56], [1, 49], [2, 41], [3, 38], [4, 46], [5, 67], [6, 57], [7, 59] ];
+
+        var chartUsersOptions = {
+            series: {
+                splines: {
+                    show: true,
+                    tension: 0.4,
+                    lineWidth: 1,
+                    fill: 0.4
+                },
+            },
+            grid: {
+                tickColor: "#f0f0f0",
+                borderWidth: 1,
+                borderColor: 'f0f0f0',
+                color: '#6a6c6f'
+            },
+            colors: [ "#62cb31", "#efefef"],
+        };
+
+        $.plot($("#flot-line-chart"), [data1, data2], chartUsersOptions);
+
+        /**
+         * Flot charts 2 data and options
+         */
+        var chartIncomeData = [
+            {
+                label: "line",
+                data: [ [1, 10], [2, 26], [3, 16], [4, 36], [5, 32], [6, 51] ]
+            }
+        ];
+
+        var chartIncomeOptions = {
+            series: {
+                lines: {
+                    show: true,
+                    lineWidth: 0,
+                    fill: true,
+                    fillColor: "#64cc34"
+
+                }
+            },
+            colors: ["#62cb31"],
+            grid: {
+                show: false
+            },
+            legend: {
+                show: false
+            }
+        };
+
+        $.plot($("#flot-income-chart"), chartIncomeData, chartIncomeOptions);
+
+
+
+    });
+
+    </script>
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-4625583-2', 'webapplayers.com');
+    ga('send', 'pageview');
+
+    </script>
+
+    <script>
+
+    $(function () {
+
+        $('.demo1').click(function(){
+            swal({
+                title: "Welcome in Alerts",
+                text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            });
+        });
+
+        $('.demo2').click(function(){
+            swal({
+                title: "Good job!",
+                text: "You clicked the button!",
+                type: "success"
+            });
+        });
+
+        $('.demo3').click(function () {
+            swal({
+                        title: "Are you sure?",
+                        text: "Your will not be able to recover this imaginary file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!"
+                    },
+                    function () {
+                        swal("Booyah!");
+                    });
+        });
+
+        $('.demo4').click(function () {
+            swal({
+                        title: "Are you sure?",
+                        text: "Your will not be able to recover this imaginary file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!",
+                        cancelButtonText: "No, cancel plx!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            swal("Deleted!", "Your imaginary file has been deleted.", "success" rel="stylesheet" />;
+                        } else {
+                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                    });
+        });
+
+        // Toastr options
+        toastr.options = {
+            "debug": false,
+            "newestOnTop": false,
+            "positionClass": "toast-top-center",
+            "closeButton": true,
+            "toastClass": "animated fadeInDown",
+        };
+
+        $('.homerDemo1').click(function (){
+            toastr.info('Info - This is a custom Homer info notification');
+        });
+
+        $('.homerDemo2').click(function (){
+            toastr.success('Success - This is a Homer success notification');
+        });
+
+        $('.homerDemo3').click(function (){
+            toastr.warning('Warning - This is a Homer warning notification');
+        });
+
+        $('.homerDemo4').click(function (){
+            toastr.error('Error - This is a Homer error notification');
+        });
+
+    });
+
+    </script>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="fixed-navbar sidebar-scroll">
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+        
+        <hr/>
+        <footer>
+            <p style="text-align: center;">&copy; JobyCo - <%=DateTime.Now.Year%></p>
+        </footer>    
+    </div>
+    </form>
+</body>
+</html>

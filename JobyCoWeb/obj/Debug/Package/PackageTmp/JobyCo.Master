@@ -1,0 +1,653 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="JobyCo.master.cs" Inherits="JobyCoWeb.JobyCo" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+    <link rel="icon" href="/images/favicon.png"/>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet"/>
+
+    <!-- Custom styles for this template -->
+    <link href="/css/custom.css" rel="stylesheet"/>
+    
+    <!-- tel flag styles for this template -->
+    <link href="/css/font-awesome.css" rel="stylesheet"/>
+    
+    <!-- font awesome styles for this template -->
+    <link rel="stylesheet" href="/css/intlTelInput.css"/>
+    
+    <!-- drawer styles for this template -->
+    <link href="/css/drawer.css" rel="stylesheet"/>
+
+    <!-- multiForm styles for this template -->
+    <link href="/css/multiForm.css" rel="stylesheet"/>
+
+    <!-- media query styles for this template -->
+    <link href="/css/media_query.css" rel="stylesheet" />
+
+    <!-- bounce in styles for this template -->
+    <link href="/css/flash.css" rel="stylesheet" />
+
+    <!-- google font for this template
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700|Montserrat:200,300,400,500,600,700,800,900|Open+Sans:300,400,600,700,800" rel="stylesheet"/> -->
+
+    <!-- App styles -->
+    <!--<link href="/Content/bootstrap.css" rel="stylesheet" />-->
+    <link href="/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="/fonts/pe-icon-7-stroke/css/helper.css" rel="stylesheet" />
+    <link href="/styles/style.css" rel="stylesheet" />
+    <link href="/styles/password.css" rel="stylesheet" />
+    <link href="/styles/static_custom.css" rel="stylesheet" />
+
+    <!-- Vendor Styles -->
+    <link href="/vendor/sweetalert/lib/sweet-alert.css" rel="stylesheet" />
+    <link href="/vendor/toastr/build/toastr.min.css" rel="stylesheet" />
+    <link href="/vendor/fontawesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="/vendor/metisMenu/dist/metisMenu.css" rel="stylesheet" />
+    <link href="/vendor/animate.css/animate.css" rel="stylesheet" />
+    <!--<link href="/vendor/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />-->
+    
+    <!-- Vendor scripts -->
+    <!--<script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/vendor/jquery-ui/jquery-ui.min.js"></script>-->
+    <script src="/js/jquery-2.2.4.min.js"></script> 
+
+    <script src="/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+    <!--<script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>-->
+    <script src="/vendor/jquery-flot/jquery.flot.js"></script>
+    <script src="/vendor/jquery-flot/jquery.flot.resize.js"></script>
+    <script src="/vendor/jquery-flot/jquery.flot.pie.js"></script>
+    <script src="/vendor/flot.curvedlines/curvedLines.js"></script>
+    <script src="/vendor/jquery.flot.spline/index.js"></script>
+    <script src="/vendor/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="/vendor/iCheck/icheck.min.js"></script>
+    <script src="/vendor/peity/jquery.peity.min.js"></script>
+    <script src="/vendor/sparkline/index.js"></script>
+    <script src="/vendor/sweetalert/lib/sweet-alert.min.js"></script>
+    <script src="/vendor/toastr/build/toastr.min.js"></script>
+
+    <!-- App scripts -->
+    <script src="/Scripts/homer.js"></script>
+    <script src="/Scripts/charts.js"></script>
+
+    <!-- Vendor scripts -->
+    <script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/vendor/jquery-ui/jquery-ui.min.js"></script>
+
+    <script src="/vendor/slimScroll/jquery.slimscroll.min.js"></script>
+    <!--<script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>-->
+    <script src="/vendor/jquery-flot/jquery.flot.js"></script>
+    <script src="/vendor/jquery-flot/jquery.flot.resize.js"></script>
+    <script src="/vendor/jquery-flot/jquery.flot.pie.js"></script>
+    <script src="/vendor/flot.curvedlines/curvedLines.js"></script>
+    <script src="/vendor/jquery.flot.spline/index.js"></script>
+    <script src="/vendor/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="/vendor/iCheck/icheck.min.js"></script>
+    <script src="/vendor/peity/jquery.peity.min.js"></script>
+    <script src="/vendor/sparkline/index.js"></script>
+    <script src="/vendor/sweetalert/lib/sweet-alert.min.js"></script>
+    <script src="/vendor/toastr/build/toastr.min.js"></script>
+
+    <!-- App scripts -->
+    <script src="/Scripts/homer.js"></script>
+    <script src="/Scripts/charts.js"></script>
+
+    <script>
+
+    $(function () {
+
+        /**
+         * Flot charts data and options
+         */
+        var data1 = [ [0, 55], [1, 48], [2, 40], [3, 36], [4, 40], [5, 60], [6, 50], [7, 51] ];
+        var data2 = [ [0, 56], [1, 49], [2, 41], [3, 38], [4, 46], [5, 67], [6, 57], [7, 59] ];
+
+        var chartUsersOptions = {
+            series: {
+                splines: {
+                    show: true,
+                    tension: 0.4,
+                    lineWidth: 1,
+                    fill: 0.4
+                },
+            },
+            grid: {
+                tickColor: "#f0f0f0",
+                borderWidth: 1,
+                borderColor: 'f0f0f0',
+                color: '#6a6c6f'
+            },
+            colors: [ "#62cb31", "#efefef"],
+        };
+
+        $.plot($("#flot-line-chart"), [data1, data2], chartUsersOptions);
+
+        /**
+         * Flot charts 2 data and options
+         */
+        var chartIncomeData = [
+            {
+                label: "line",
+                data: [ [1, 10], [2, 26], [3, 16], [4, 36], [5, 32], [6, 51] ]
+            }
+        ];
+
+        var chartIncomeOptions = {
+            series: {
+                lines: {
+                    show: true,
+                    lineWidth: 0,
+                    fill: true,
+                    fillColor: "#64cc34"
+
+                }
+            },
+            colors: ["#62cb31"],
+            grid: {
+                show: false
+            },
+            legend: {
+                show: false
+            }
+        };
+
+        $.plot($("#flot-income-chart"), chartIncomeData, chartIncomeOptions);
+
+
+
+    });
+
+    </script>
+
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-4625583-2', 'webapplayers.com');
+    ga('send', 'pageview');
+
+    </script>
+
+    <script>
+
+    $(function () {
+
+        $('.demo1').click(function(){
+            swal({
+                title: "Welcome in Alerts",
+                text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            });
+        });
+
+        $('.demo2').click(function(){
+            swal({
+                title: "Good job!",
+                text: "You clicked the button!",
+                type: "success"
+            });
+        });
+
+        $('.demo3').click(function () {
+            swal({
+                        title: "Are you sure?",
+                        text: "Your will not be able to recover this imaginary file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!"
+                    },
+                    function () {
+                        swal("Booyah!");
+                    });
+        });
+
+        $('.demo4').click(function () {
+            swal({
+                        title: "Are you sure?",
+                        text: "Your will not be able to recover this imaginary file!",
+                        type: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#DD6B55",
+                        confirmButtonText: "Yes, delete it!",
+                        cancelButtonText: "No, cancel plx!",
+                        closeOnConfirm: false,
+                        closeOnCancel: false },
+                    function (isConfirm) {
+                        if (isConfirm) {
+                            swal("Deleted!", "Your imaginary file has been deleted.", "success" rel="stylesheet" />;
+                        } else {
+                            swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        }
+                    });
+        });
+
+        // Toastr options
+        toastr.options = {
+            "debug": false,
+            "newestOnTop": false,
+            "positionClass": "toast-top-center",
+            "closeButton": true,
+            "toastClass": "animated fadeInDown",
+        };
+
+        $('.homerDemo1').click(function (){
+            toastr.info('Info - This is a custom Homer info notification');
+        });
+
+        $('.homerDemo2').click(function (){
+            toastr.success('Success - This is a Homer success notification');
+        });
+
+        $('.homerDemo3').click(function (){
+            toastr.warning('Warning - This is a Homer warning notification');
+        });
+
+        $('.homerDemo4').click(function (){
+            toastr.error('Error - This is a Homer error notification');
+        });
+
+    });
+
+    </script>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->    
+    <!-- Placed at the end of the document so the pages load faster-->    
+    <script src="/js/jquery-2.2.4.min.js"></script> 
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="fixed-navbar sidebar-scroll">
+
+<!-- Header -->
+    <div id="header">
+        <div class="color-line">
+        </div>
+        <div id="logo" class="light-version">
+            <span><img src="/images/JobyCo_Logo.png" height="50" width="150" /></span>
+        </div>
+        <nav role="navigation">
+            <div class="header-link hide-menu"><i class="fa fa-bars"></i></div>
+            <div class="small-logo">
+                <span class="text-primary">JobyCo APP</span>
+            </div>
+            <div class="form-group navbar-form-custom" role="search">
+                <input type="text" placeholder="Search something special" class="form-control" name="search" />
+            </div>
+            <div class="mobile-menu">
+                <button type="button" class="navbar-toggle mobile-menu-toggle" data-toggle="collapse" data-target="#mobile-collapse">
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+                <div class="collapse mobile-navbar" id="mobile-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a class="" href="/Login.aspx">Login</a>
+                        </li>
+                        <li>
+                            <!--<a class="" href="/Login.aspx" runat="server" id="Logout01">Logout</a>-->
+                            <button type="submit" runat="server" id="lnkLogout01">LogOut</button>
+                        </li>
+                        <li>
+                            <a class="" href="profile.html">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="navbar-right">
+                <ul class="nav navbar-nav no-borders">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                            <i class="pe-7s-speaker"></i>
+                        </a>
+                        <ul class="dropdown-menu hdropdown notification animated flipInX">
+                            <li>
+                                <a>
+                                    <span class="label label-success">NEW</span> It is a long established.
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span class="label label-warning">WAR</span> There are many variations.
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    <span class="label label-danger">ERR</span> Contrary to popular belief.
+                                </a>
+                            </li>
+                            <li class="summary"><a href="#">See all notifications</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                            <i class="pe-7s-keypad"></i>
+                        </a>
+
+                        <div class="dropdown-menu hdropdown bigmenu animated flipInX">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="projects.html">
+                                            <i class="pe pe-7s-portfolio text-info"></i>
+                                            <h5>Projects</h5>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="mailbox.html">
+                                            <i class="pe pe-7s-mail text-warning"></i>
+                                            <h5>Email</h5>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="contacts.html">
+                                            <i class="pe pe-7s-users text-success"></i>
+                                            <h5>Contacts</h5>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="forum.html">
+                                            <i class="pe pe-7s-comment text-info"></i>
+                                            <h5>Forum</h5>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="analytics.html">
+                                            <i class="pe pe-7s-graph1 text-danger"></i>
+                                            <h5>Analytics</h5>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="file_manager.html">
+                                            <i class="pe pe-7s-box1 text-success"></i>
+                                            <h5>Files</h5>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle label-menu-corner" href="#" data-toggle="dropdown">
+                            <i class="pe-7s-mail"></i>
+                            <span class="label label-success">4</span>
+                        </a>
+                        <ul class="dropdown-menu hdropdown animated flipInX">
+                            <div class="title">
+                                You have 4 new messages
+                            </div>
+                            <li>
+                                <a>
+                                    It is a long established.
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    There are many variations.
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Lorem Ipsum is simply dummy.
+                                </a>
+                            </li>
+                            <li>
+                                <a>
+                                    Contrary to popular belief.
+                                </a>
+                            </li>
+                            <li class="summary"><a href="#">See All Messages</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" id="sidebar" class="right-sidebar-toggle">
+                            <i class="pe-7s-upload pe-7s-news-paper"></i>
+                        </a>
+                    </li>
+                    <li class="dropdown">
+                        <a href="/Login.aspx">
+                            <i class="pe-7s-upload pe-rotate-90"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+<!-- Navigation -->
+    <aside id="menu">
+        <div id="navigation">
+            <div class="profile-picture">
+                <a href="index-2.html">
+                    <img src="/images/profile.jpg" class="img-circle m-b" alt="logo" />
+                </a>
+
+                <div class="stats-label text-color">
+                    <span class="font-extra-bold font-uppercase"></span>
+
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                            <small class="text-muted">Founder of App <b class="caret"></b></small>
+                        </a>
+                        <ul class="dropdown-menu animated flipInX m-t-xs">
+                            <li><a href="contacts.html">Contacts</a></li>
+                            <li><a href="profile.html">Profile</a></li>
+                            <li><a href="analytics.html">Analytics</a></li>
+                            <li class="divider"></li>
+                            <li>
+                                <!--<a href="/Login.aspx">Logout</a>-->
+                                <button type="submit" runat="server" id="lnkLogout02">LogOut</button>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div id="sparkline1" class="small-chart m-t-sm"></div>
+                    <div>
+                        <h4 class="font-extra-bold m-b-xs">
+                            £260 104,200
+                        </h4>
+                        <small class="text-muted">Your income from the last year in sales product X.</small>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="nav" id="side-menu">
+                <li class="active">
+                    <a href="/Dashboard.aspx"> <span class="nav-label">Dashboard</span> <span class="label-success pull-right">v.1</span> </a>
+                </li>
+                <li>
+                    <a><span class="nav-label">Booking</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Booking/AddBooking.aspx">Add Booking</a></li>
+                        <li><a href="/Booking/AssignBookingToDriver.aspx">Assign Booking To Driver</a></li>
+                        <li><a href="/Booking/ViewAllBookings.aspx">View All Bookings</a></li>
+                        <li><a href="/Booking/PrintDriverJob.aspx">Print Driver Job</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Operations</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Operation/CheckIn.aspx">Check In a Package</a></li>
+                        <li><a href="/Operation/CheckOut.aspx">Check Out a Package</a></li>
+                        <li><a href="/Operation/IssueInvoice.aspx">Issue Invoice</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Accounts</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Accounting/ViewInvoices.aspx">View Invoices</a></li>
+                        <li><a href="/Accounting/ProcessInvoices.aspx">Process Invoices</a></li>
+                        <li><a href="/Accounting/DriverPayment.aspx">Driver Payment</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Shipping</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Shipping/AddShipping.aspx">Add Shipping</a></li>
+                        <li><a href="/Shipping/ViewShipping.aspx">View Shipping</a></li>
+                        <li><a href="/Shipping/AssignItemToShipping.aspx">Assign Item To Shipping</a></li>
+                        <li><a href="/Shipping/TrackShipment.aspx">Track Shipment</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Reports</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Reports/CSA_Report.aspx">CSA Report</a></li>
+                        <li><a href="/Reports/CustomerOrders.aspx">Customer Orders</a></li>
+                        <li><a href="/Reports/CRM_AuditReport.aspx">CRM Audit Report</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Customers</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Customers/AddCustomer.aspx">Add Customer</a></li>
+                        <li><a href="/Customers/EditCustomer.aspx">Edit Customer</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Customer Portal</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/CustomerPortal/BookPickup.aspx">Book Pickup</a></li>
+                        <li><a href="/CustomerPortal/BookDelivery.aspx">Book Delivery</a></li>
+                        <li><a href="/CustomerPortal/TrackYourShipment.aspx">Track Your Shipment</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Warehouse</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Warehouse/NewWarehouse.aspx">New Warehouse</a></li>
+                        <li><a href="/Warehouse/ViewAllWarehouses.aspx">View all Warehouses</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Location</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Location/NewLocation.aspx">New Location</a></li>
+                        <li><a href="/Location/ViewAllLocations.aspx">View All Locations</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Zone</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Zone/NewZone.aspx">New Zone</a></li>
+                        <li><a href="/Zone/ViewAllZones.aspx">View All Zones</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Taxation</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Taxation/NewTaxationType.aspx">New Taxation Type</a></li>
+                        <li><a href="/Taxation/NewTaxation.aspx">New Taxation</a></li>
+                        <li><a href="/Taxation/ViewAllTaxations.aspx">View All Taxations</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Currency</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Currency/NewCurrency.aspx">New Currency</a></li>
+                        <li><a href="/Currency/ViewAllCurrencies.aspx">View All Currencies</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Payment Options</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/PaymentOptions/AddPaymentOption.aspx">Add a Payment Option</a></li>
+                        <li><a href="/PaymentOptions/ViewAllPaymentOptions.aspx">View All Payment Options</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Customer Care</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/CustomerCare/AddEscalationLevel.aspx">Add Escalation Level</a></li>
+                        <li><a href="/CustomerCare/ViewAllEscalationLevels.aspx">View All Escalation Levels</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Email Configuration</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/EmailConfiguration/ConfigureNewEmail.aspx">Configure New Email</a></li>
+                        <li><a href="/EmailConfiguration/ViewListOfEmails.aspx">View List Of Emails</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">User</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Users/NewUser.aspx">New User</a></li>
+                        <li><a href="/Users/ViewAllUsers.aspx">View All Users</a></li>
+                        <li><a href="/Users/AuthenticateUsers.aspx">Authenticate Users</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Role</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Role/NewRole.aspx">New Role</a></li>
+                        <li><a href="/Role/ViewAllRoles.aspx">View All Roles</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a><span class="nav-label">Designation</span><span class="fa arrow"></span> </a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="/Designation/NewDesignation.aspx">New Designation</a></li>
+                        <li><a href="/Designation/ViewAllDesignations.aspx">View All Designations</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </aside>
+
+    <div id="wrapper">
+   	<!-- content -->
+    <main role="main">
+        <section class="item">            
+            <section class="innerNav-sec">
+                <!-- Static navbar -->
+                <div class="col-md-12 col-sm-12">
+                    <div class="deliOpt">
+                    	<div class="row">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+                            </asp:ContentPlaceHolder>
+						</div>                        
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+    </div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->    
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery-2.2.4.min.js"></script> 
+    <script src="/js/iscroll.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    
+    <!-- drawerMenu-JS -->
+    <script src="/js/drawer.min.js"></script>
+
+	<!-- multiForm-JS -->
+    <script src="/js/jquery.easing.min.js"></script>
+    <!--<script src="/js/multiForm.js"></script>-->
+    <script src="/js/intlTelInput.min.js"></script>
+    <script src="/js/custom.js"></script>
+
+    <script src="/Scripts/allfunctions.js"></script>
+    <link href="/Styles/jquery-confirm.min.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-confirm.min.js"></script>
+            
+</body>
+</html>

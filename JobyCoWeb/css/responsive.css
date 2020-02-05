@@ -1,0 +1,382 @@
+﻿.col-md-10.col-sm-10.col-sm-12.pull-right {
+	text-align: right;
+	
+}
+.col-md-10.col-sm-10.col-sm-12.pull-right .iconADD,   {
+	display:inline-block;
+    margin-bottom: 10px;
+}
+
+.col-md-12.icon_center span, .col-md-12.view_left span {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+.col-md-12.icon_center .iconADD i, .col-md-12.view_left span i {
+	top: 10px !important;
+}
+.txt_cnct{
+    text-align:center;
+}
+.txt_cnct #paymentBKD {
+	font-size: 15px;
+	color: #fff;
+	margin-top: 20px;
+	display: inline-block;
+	background: #FCA311;
+	border: 1px solid #FCA311;
+	padding: 8px;
+	/* border-radius: 20px; */
+	text-align: center;
+	position: relative;
+	padding: 8px 30px 8px 40px;
+	text-shadow: 1px 1px 0 rgba(0,0,0,0.1);
+	width: auto;
+	margin: 15px auto;
+}
+
+@media only screen and (max-width: 1024px) {
+/*.navbar-nav .open .dropdown-menu {
+position: static;
+float: none;
+width: auto;
+margin-top: 0;
+background-color: transparent;
+border: 0;
+-webkit-box-shadow: none;
+box-shadow: none;
+}
+.navbar-nav .open .dropdown-menu > li > a {
+line-height: 20px;
+}
+.navbar-nav .open .dropdown-menu > li > a,
+.navbar-nav .open .dropdown-menu .dropdown-header {
+padding: 5px 15px 5px 25px;
+}
+.dropdown-menu > li > a {
+display: block;
+padding: 3px 20px;
+clear: both;
+font-weight: normal;
+line-height: 1.42857143;
+color: #333;
+white-space: nowrap;
+}
+.navbar-header {
+float: none;
+}
+.navbar-toggle {
+display: block;
+}
+.navbar-collapse {
+border-top: 1px solid transparent;
+box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+}
+.navbar-collapse.collapse {
+display: none!important;
+}
+.navbar-nav {
+float: none!important;
+margin: 7.5px 50px 7.5px -15px
+}
+.navbar-nav>li {
+float: none;
+}
+.navbar-nav>li>a {
+padding-top: 10px;
+padding-bottom: 10px;
+}
+.navbar-text {
+float: none;
+margin: 15px 0;
+}
+.navbar-collapse.collapse.in { 
+display: block!important;
+}
+.collapsing {
+overflow: hidden!important;
+}*/
+
+section.innerNav-sec p {
+width: 90%;
+}
+.navbar-toggle {
+padding: 22px 15px;
+}
+
+.navbar-nav {
+float: left;
+margin: 0;
+width: 100%;
+}
+.header .navbar-default .navbar-nav > li > a {
+padding: 12px 15px;
+}
+#dtPrintDriverJob, #dtViewShipping{
+    width:auto !important;
+}
+#dtViewCustomer, #dtViewDriver, #dtViewWarehouse, #dtViewLocation, #dtViewZone, #dtMenuDetails{
+    width:auto !important;
+}
+/*----------------------*/
+.navbar-header { float:left;}
+.navbar-default .navbar-collapse { float:right;}
+.acntLog .userID { margin-right:0;}
+.side_column span { font-size:14px;}
+.side_column { padding-top:17px;}
+.d_menu_block a { font-size:17px;}
+
+
+
+
+}
+@media only screen and (max-width: 980px) {
+.list__item .label figure{
+height:auto;
+}
+.label::before {
+bottom: 69px;
+}
+#btnBookPickupAddRow, #btnBookPickupAddMultipleRow{
+width:auto !important;
+}
+#dtAssignBookingToDriver{
+width:100% !important;
+}
+#dtAssignBookingToDriver tr th {
+padding: 4px;
+}
+#dtViewBookings_info {
+	width: 100%;
+	text-align: center;
+}
+#dtViewBookings_paginate {
+	width: 100%;
+	text-align: center;
+	border-top: 1px solid #000;
+}
+
+.col-md-12.text-center.v_booking span{
+    display:inline-block;
+    margin-bottom:8px;
+}
+.v_booking .iconADD i {
+    top: 10px;
+}
+.container {
+    width: auto;
+}
+.col-md-7.pad_left_half .iconADD {
+    float: unset !important;
+    display: inline-block;
+    margin: 10px 3px;
+}
+.col-sm-8.btn_cnctr {
+	text-align: center;
+}
+.d_menu_block {width: 32%;}
+.innerNav-sec > .container > .row { margin:0;}
+.d_menu_block {width: 48.7%;}
+.side_column {padding-top: 23px;}
+
+}
+@media only screen and (max-width: 768px) {
+    #dtPrintDriverJob_wrapper{
+        overflow:scroll;
+    }
+    section.innerNav-sec p {
+    width: 100%;
+}
+    .clearfix.text-center.btn_center span {
+    display: inline-block;
+}
+    .btn_center .iconADD i {
+    top: 10px;
+}
+    .tble_main {
+    overflow: scroll;
+}
+    #dtViewCustomer_wrapper {
+	overflow: auto;
+}
+}
+@media only screen and (max-width: 767px) {
+.formContent {
+padding: 45px 0;
+height: auto;
+}
+.innerNav-sec{
+padding:0 15px;
+}
+#myTable tr td:nth-child(7) {
+width: auto !important;
+}
+.cmnLabel{
+display:block;
+margin:10px 0px;
+}
+#dtAssignBookingToDriver tr td {
+    font-size: 10px;
+}
+#ContentPlaceHolder1_txtContainerNoORBookingNo {
+	margin-bottom: 10px;
+}
+.colorCode {
+	padding: 9px 0px 10px 9px;
+}
+.colorCode ul li {
+	width: 20px;
+	height: 20px;
+}
+.colorCode strong {
+	font-size: 13px;
+}
+/*-------------------------*/
+.navbar-header { float:left;}
+.navbar-default .navbar-collapse { float:right;}
+.header .collapse {display: block;}
+.header .navbar-toggle.collapsed { display:none;}
+.header .navbar-default .navbar-collapse { margin-top:0; border:0;}
+.acntLog .userID { margin-right:0;}
+.header .navbar > .container .navbar-brand, .header .navbar > .container-fluid .navbar-brand {
+    margin: 14px 0 10px 54px;}
+.header .navbar-default .navbar-nav.acntLog > li > a {padding: 14px 0px;}
+.header .navbar-default .navbar-nav.acntLog > li > a {padding: 12px 0px;}
+.innerNav-sec > .container > .row { margin-right: -15px; margin-left: -15px;}
+.d_menu_block {width: 100%;margin: 0 0 20px 0;}
+.side_column span {font-size: 18px;}
+.d_menu_block a {font-size: 20px;}
+.d_menu_block:last-child { margin-bottom:0;}
+.header .acntLog .dropdown ul.dropdown-menu {background:#282828;}
+.navbar-nav .open .dropdown-menu { position:absolute;}
+.d_box {margin: 20px 10px 40px 10px;}
+.table_tax #dtViewBookings td button { display:block;}
+
+}
+@media only screen and (max-width: 640px) {
+#btnBookPickupAddRow, #btnBookPickupAddMultipleRow{
+margin:10px 0px;
+}
+#dtAssignBookingToDriver_wrapper {
+    overflow: scroll;
+}
+.no_padd{
+    padding:0px;
+}
+#dtViewBookings_length, #dtViewBookings_filter{
+    width:100%;
+}
+.tble_main{
+    overflow:scroll;
+    width:100%;
+}
+#dtViewCustomer_length label {
+	color: black;
+	width: 100%;
+}
+}
+@media only screen and (max-width: 480px) {
+.hmBG{
+height:100% !important;
+}
+#dvSignup {
+padding-top: 1rem;
+padding-bottom: 5rem;
+}
+#myTable thead tr {
+background: #FCA311;
+margin-bottom: 15px;
+display: table;
+margin-left: 0;
+clear: both
+}
+#myTable thead tr td{
+display:block;
+width:auto;
+}
+#myTable thead tr td h3{
+font-size:8px !important;
+}
+#dtAssignBookingToDriver tr td {
+    font-size: 12px;
+}
+.all_span .iconADD input{
+  width: 100% !important;
+    font-size: 12px;
+}
+
+.all_span .iconADD {
+    display:block;
+}
+#ContentPlaceHolder1_btnCancelDriverJob, #ContentPlaceHolder1_btnShowDriverJob {
+	width: 100%;
+	margin: 5px 0;
+}
+.iconADD{
+    display:block;
+}
+.iconADD input, iconADD input{
+    width:100% !important;
+}
+.iconADD{
+    display:block;
+}
+.iconADD i {
+	top: 10px !important;
+}
+.iconADD{
+    float:unset !important;
+}
+.col-md-10.col-sm-10.col-sm-12.pull-right .iconADD {
+	display: inline-block;
+	margin-bottom: 10px;
+	width: 100%;
+}
+.col-md-12.icon_center span, .col-md-12.view_left span {
+	width: 100%;
+}
+#dtViewWarehouse_length label, #dtViewLocation_length label {
+	width: 100%;
+}
+#dtViewWarehouse_length label select, #dtViewLocation_length label select {
+	width: 30%;
+}
+.division-bx {
+	width: 90%;
+}
+.division-bx input[type="submit"] {
+	width: 100%;
+}
+.txt_cnct #paymentBKD {
+	display: block;
+	margin: 18px 15px;
+}
+.btn_cnctr input {
+	margin: 10px 0;
+}
+}
+@media only screen and (max-width: 479px) {
+.navbar-brand {width: 70px;}
+.header .navbar > .container-fluid .navbar-brand {margin: 16px 0 16px 54px;}
+.header .navbar-default .navbar-nav.acntLog > li > a {padding: 11px 0px;}
+.accordion_sec .panel-heading a {padding: 7px 0px;font-size: 18px;}
+.d_menu_block a {font-size: 16px;}
+.side_column { padding-top: 8px;}
+.side_column span {font-size: 12px;}
+.d_menu_block a { height:40px;}
+}
+@media only screen and (max-width: 390px) {
+.upNEW{
+width:35px;
+}
+.upNEW i{
+font-size:15px;
+}
+#ContentPlaceHolder1_btnSaveStatus {
+	margin-bottom: 10px;
+}
+
+
+}
+@media only screen and (max-width: 320px) {
+
+}
