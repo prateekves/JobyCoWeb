@@ -8,8 +8,12 @@ namespace EntityLayer
 {
     public class clsUsers
     {
+        public string id { get; set; }
         public string UserId { get; set; }
         public string EmailID { get; set; }
+        public string Title { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string CustomerName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }

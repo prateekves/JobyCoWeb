@@ -990,7 +990,7 @@
             var sWage = $( '#<%=hfDriverWage.ClientID%>' ).val().trim();
             Wage = parseFloat(sWage);
             
-            debugger;
+            
             $('.findDriverJoblink').attr('href', '/Booking/PrintDriverJob.aspx?DriverId=' + DriverId);
             //$('.findDriverJoblink').attr('href', '/Booking/PrintDriverJob.aspx');
 

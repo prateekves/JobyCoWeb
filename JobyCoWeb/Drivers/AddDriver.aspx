@@ -432,7 +432,7 @@
             async : false,
             success: function (result) {
                 $( "#<%=hfDriverIdFromEmailId.ClientID%>" ).val( result.d );   
-                debugger;
+                
                 if (result.d == "True") {
                     vErrMsg.text('This Email Address already Exists. Try another');
                     vErrMsg.css("display", "block");

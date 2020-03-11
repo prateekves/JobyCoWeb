@@ -119,7 +119,8 @@ namespace JobyCoWeb.Booking
                 objBooking.PickupPostCode = drBooking["PickupPostCode"].ToString();
                 objBooking.DeliveryPostCode = drBooking["DeliveryPostCode"].ToString();
                 objBooking.PickupCustomerTitle = drBooking["PickupTitle"].ToString();
-                objBooking.DeliveryCustomerTitle = drBooking["DeliveryTitle"].ToString();
+                objBooking.CreatedBy = drBooking["CreatedBy"].ToString();
+                objBooking.IsRegisteredUser = drBooking["IsRegisteredUser"].ToString();
 
                 lstBooking.Add(objBooking);
             }

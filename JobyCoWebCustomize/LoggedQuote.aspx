@@ -181,7 +181,7 @@
                     var optionsCollection = {
                         bounds: defaultCollectionBounds
                     };
-                    debugger;
+                    
                     //var placeCollection = placesCollection.getPlace();
                     //var addressCollection = jdata[0]["Address"];
                     var latitudeCollection = jdata[0]["LatitudePickup"];
@@ -360,7 +360,7 @@
             var IsExists = 1;
             //Check Duplicate Image
             $('.file_viwer_sec img').each(function () {
-                debugger;
+                
                 var ImageTitle = $(this).attr('title');
                 if (ImageTitle == ImageName) {
                     //alert('Image already added');
@@ -423,7 +423,7 @@
         };
 
         function closeNearestImage(x, i, row) {
-            debugger;
+            
             //$(x).closest("li").css('display', 'none');
             $(x).closest("li").remove();
 
@@ -498,7 +498,7 @@
                         var newRowContentConfirmation = "";
                         var ChargesType = "";
                         for (var i = 0; i < len; i++) {
-                            //debugger;
+                            //
                             var TaxAmount = parseFloat(jdata[i]["TaxAmount"]);
                             var IsPercent = jdata[i]["IsPercent"];
                             ChargesType = jdata[i]["RadioChargesType"].toString();
@@ -1592,7 +1592,7 @@ function addRowBookPickup() {
 
 
         //function CopyFirstRow(rowCount) {
-        //    debugger;
+        //    
         //    var vMyTable_PickupCategory = "";
         //    var vMyTable_PickupCategoryValue = "";
         //    var vMyTable_PickupItem = "";
@@ -1605,7 +1605,7 @@ function addRowBookPickup() {
         //    var vMyTable_PredefinedEstimatedValue = "";
 
         //    $('#myTable >tbody >tr').each(function (index, val) {
-        //        debugger;
+        //        
 
         //        if (rowCount == val.rowIndex) {
         //            //alert(rowCount + '  ' + val.rowIndex);
@@ -1632,7 +1632,7 @@ function addRowBookPickup() {
         //            //alert(vMyTable_PickupCategory);
 
         //            $('#myTable >tbody >tr').each(function (index, val) {
-        //                debugger;
+        //                
         //                if (rowCount < val.rowIndex) {
         //                    var vMyTable_PickupCategoryId = $(this).closest("tr").find('select:eq(0)').attr("id");
         //                    $('#' + vMyTable_PickupCategoryId).val(vMyTable_PickupCategoryValue);
@@ -1657,7 +1657,7 @@ function addRowBookPickup() {
         //}
 
         function CopyFirstRow(rowCount) {
-            debugger;
+            
             var vMyTable_PickupCategory = "";
             var vMyTable_PickupCategoryValue = "";
 
@@ -1673,7 +1673,7 @@ function addRowBookPickup() {
             var vMyTable_PredefinedEstimatedValue = "";
 
             $('#myTable >tbody >tr').each(function (index, val) {
-                debugger;
+                
 
                 if (rowCount == val.rowIndex) {
                     //alert(rowCount + '  ' + val.rowIndex);
@@ -1706,7 +1706,7 @@ function addRowBookPickup() {
                     //alert(vMyTable_PickupCategory);
 
                     $('#myTable >tbody >tr').each(function (index, val) {
-                        debugger;
+                        
                         if (rowCount < val.rowIndex) {
                             var vMyTable_PickupCategoryId = $(this).closest("tr").find('select:eq(0)').attr("id");
                             $('#' + vMyTable_PickupCategoryId).val(vMyTable_PickupCategoryValue);
@@ -2085,7 +2085,7 @@ function addRowBookPickup() {
 
             //==========Check Category In Booking Table
             $('#myTable >tbody >tr').each(function (index, val) {
-                debugger;
+                
                 if (index >= 0) {
                     var vMyTable_PickupCategoryId = $(this).closest("tr").find('select:eq(0)').attr("id");
                     var vMyTable_PickupCategory = $(this).closest("tr").find('select:eq(0)').find("option:selected").text().trim();
@@ -2703,7 +2703,7 @@ function addRowBookPickup() {
 
             function uploadImageFile()
             {
-                debugger;
+                
                 var files = "";
                 var OuterLoopCount = 0;
                 var BookingId = $( "#<%=hfBookingId.ClientID%>" ).val().trim();
@@ -2721,7 +2721,7 @@ function addRowBookPickup() {
 
                     $( "#myTable >tbody >tr" ).each( function ()
                     {
-                        debugger;
+                        
                         var InnerLoopCount = 0;
                         InnerLoopCount = $('#apnd_div' + OuterLoopCount).find('.mlty_ple_upload').length;
                         //alert('OuterLoopCount= ' + OuterLoopCount + ' InnerLoopCount= ' + InnerLoopCount);
@@ -2743,7 +2743,7 @@ function addRowBookPickup() {
                                 var ImageName = BookingId + '-' + files[0].name;;
                                 //var ImageUrl = 'https://firebasestorage.googleapis.com/v0/b/jobycoimages.appspot.com/o/images%2F' + BookingId + '-' + files[0].name + '?alt=media';
                                 var ImageUrl = 'https://firebasestorage.googleapis.com/v0/b/jobycodirect.appspot.com/o/images%2F' + BookingId + '-' + files[0].name + '?alt=media';
-                                debugger;
+                                
 
                                 //Save in the Customer Portal
                                 //New Code for Image Insert
@@ -3088,7 +3088,7 @@ function addRowBookPickup() {
             geocoder.geocode({ 'address': address }, function (results, status) {
 
                 if (status == google.maps.GeocoderStatus.OK) {
-                    debugger;
+                    
                     var latitude = results[0].geometry.location.latitude;
                     var longitude = results[0].geometry.location.longitude;
                     //2nd Block
@@ -3099,7 +3099,7 @@ function addRowBookPickup() {
                                 geocoder.geocode({ 'address': address }, function (results, status) {
 
                                     if (status == google.maps.GeocoderStatus.OK) {
-                                        debugger;
+                                        
                                         var latitude = results[0].geometry.location.latitude;
                                         var longitude = results[0].geometry.location.longitude;
                                         //alert(latitude);
@@ -3618,7 +3618,7 @@ function addRowBookPickup() {
                                 //===============================================
                                 BookPickupDetails += "<b>Predefined Estimated Value: </b>" + PredefinedEstimatedValue + "<br/>";
                                 //===============================================
-                                debugger;
+                                
                                 objBP = {};
                                 objBP.PickupId = "";
                                 objBP.BookingId = BookingId;
@@ -3661,7 +3661,7 @@ function addRowBookPickup() {
         }
 
         function proceedToPayment() {
-            debugger;
+            
             saveBooking();
                 var EmailID = $("#<%=txtPickupEmailAddress.ClientID%>").val().trim();
 

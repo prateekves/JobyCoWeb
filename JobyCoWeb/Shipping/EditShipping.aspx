@@ -1154,7 +1154,7 @@
             JsonData.BookingId = BookingId;
             JsonData.IsAdd = 0;
             JsonData.ContainerId = ContainerId;
-            debugger;
+            
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",

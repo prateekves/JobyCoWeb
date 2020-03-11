@@ -46,16 +46,80 @@ input[type="file"] {
     ================================================== -->    
     <script>
 
-        //$(document).ajaxStop($.unblockUI);
-
-        //function mainMenu() {
-        //    $.ajax({
-        //        url: 'Dashboard.aspx',
-        //        cache: false
-        //    });
-        //}
-
+        //typeahead starts here
         $(document).ready(function () {
+
+       $('#txtcustomers').typeahead({  
+                hint: true,  
+                highlight: true,  
+                minLength: 1,
+                items: 100,
+           source: function (request, response) {  
+                    $.ajax({  
+                        url: 'AddBooking.aspx/GetCustomerData',  
+                        data: "{ 'SearchParam': '" + request + "'}",  
+                        dataType: "json",  
+                        type: "POST",  
+                        contentType: "application/json; charset=utf-8",  
+                        success: function (data) {  
+                            items = [];  
+                            map = {};  
+                            mapSelect = {};
+                           
+                            $.each(data.d, function (i, item) {  
+                                //console.log(item);
+                                var id = item.split('-')[0];  
+                                var name = item.split('-')[1];  
+                                var display = item.split('-')[2];  //This is display column because we dont want to add phonenumber and zipcode value in the textbox
+                                map[name] = { id: id, name: name, display: display };  
+                                //console.log(name);
+                                items.push(name);
+                                
+                            });  
+                            console.log(items);
+                            response(items);  
+                            $(".dropdown-menu").css("height", "150px");  
+                            $(".dropdown-menu").css("width", "530");  
+                            $(".dropdown-menu").css("overflow", "auto");  
+                        },  
+                        error: function (response) {  
+                            console.log(response.responseText);  
+                        },  
+                        failure: function (response) {  
+                            console.log(response.responseText);  
+                        }  
+                    });  
+                },  
+                updater: function (item) {  
+                    //
+                    console.log('item:' + item);
+                    //console.log('item:' + map[item].display);
+                    $('#hdnEmpId').val(map[item].id);  //getting customerid from the array !important
+                    return map[item].display;  
+                }  
+            });
+            //typeahead ends here
+        //    var substringMatcher = function(strs) {
+        //        return function findMatches(q, cb) {
+        //        var matches, substringRegex;
+
+        //        // an array that will be populated with substring matches
+        //        matches = [];
+
+        //        // regex used to determine if a string contains the substring `q`
+        //        substrRegex = new RegExp(q, 'i');
+
+        //        // iterate through the pool of strings and for any string that
+        //        // contains the substring `q`, add it to the `matches` array
+        //        $.each(data.d, function(i, item) {
+        //          if (substrRegex.test(str)) {
+        //            matches.push(str);
+        //          }
+        //        });
+
+        //    cb(matches);
+        //    };
+        //};
 
             if (typeof google === 'object' && typeof google.maps === 'object') {
                 InitializeMap();
@@ -89,7 +153,7 @@ input[type="file"] {
     <script>
         function InitializeMap()
         {
-            //debugger;
+            //
 
             var PLat = $("#<%=hfPickupLatitude.ClientID%>").val();
             var Plong = $("#<%=hfPickupLongitude.ClientID%>").val();
@@ -131,15 +195,6 @@ input[type="file"] {
                       draggable: true,
             });
             
-            //(function (marker, data) {
-            //        // add a on marker click event
-            //        google.maps.event.addListener(marker, "click", function (e) {
-            //            //show description
-            //            infoWindow.setContent(data.description);
-            //            infoWindow.open(map, marker);
-            //        });
-            //})(marker, data);
-
             marker.setMap(DeliveryMap);
 
             infoWindow = new google.maps.InfoWindow({
@@ -279,22 +334,7 @@ input[type="file"] {
             });
         }
 
-    //    function geocodePosition(pos) {
-    //      geocoder.geocode({
-    //        latLng: pos
-    //      }, function (responses) {
-    //          debugger;
-    //        if (responses && responses.length > 0) {
-    //            marker.formatted_address = responses[0].formatted_address;
-    //            alert(responses[0].formatted_address);
-                
-    //        } else {
-    //          marker.formatted_address = 'Cannot determine address at this location.';
-    //        }
-    //        infowindow.setContent(marker.formatted_address + "<br>coordinates: " + marker.getPosition().toUrlValue(6));
-    //        infowindow.open(map, marker);
-    //      });
-    //}
+ 
     </script>
 
     <%--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA079i9v8OTWYxstBB53I-nydb8zt1c_tk&libraries=places&callback=InitializeMap" async="async" defer="defer"></script>--%>
@@ -305,9 +345,9 @@ input[type="file"] {
             getPickupCategories();
 
             //getCustomerId();
-            var vCustomerName = $("#<%=ddlCustomers.ClientID%>").find("option:selected").text().trim();
-            if (vCustomerName != "Select Customer") {
-                var vCustomerId = $("#<%=ddlCustomers.ClientID%>").find("option:selected").val().trim();
+            var vCustomerName = $("#<%=txtcustomers.ClientID%>").val();//.find("option:selected").text().trim();
+            if (vCustomerName != "") {
+                var vCustomerId = $("#<%=hdnEmpId.ClientID%>").val();//.find("option:selected").val().trim();
                 getCustomerIdFromCustomerName(vCustomerId);
             }
 
@@ -478,7 +518,7 @@ input[type="file"] {
             var IsExists = 1;
             //Check Duplicate Image
             $('.file_viwer_sec img').each(function () {
-                debugger;
+                
                 var ImageTitle = $(this).attr('title');
                 if (ImageTitle == ImageName) {
                     //alert('Image already added');
@@ -511,7 +551,7 @@ input[type="file"] {
         }
 
         function removeFileUploadRow(x, a, b) {
-            debugger;
+            
             $(x).closest("div").css('display', 'none');
             $('#FileUpload' + a + b).val(null);
             $('#ViewImage' + a + b).removeAttr('title').removeAttr('src');
@@ -566,7 +606,7 @@ input[type="file"] {
             //$('#' + ImageId).addClass("imgIcon");
             
 
-            debugger;
+            
             var Count = event.target.files.length;
             //$('.Imgli' + row).closest('li').remove();
             //alert(Count);
@@ -597,7 +637,7 @@ input[type="file"] {
         };
 
         function closeNearestImage(x, i, row) {
-            debugger;
+            
             //$(x).closest("li").css('display', 'none');
             $(x).closest("li").remove();
 
@@ -669,7 +709,7 @@ input[type="file"] {
                         var newRowContentConfirmation = "";
                         var ChargesType = "";
                         for (var i = 0; i < len; i++) {
-                            //debugger;
+                            //
                             var TaxAmount = parseFloat(jdata[i]["TaxAmount"]);
                             var IsPercent = jdata[i]["IsPercent"];
                             ChargesType = jdata[i]["RadioChargesType"].toString();
@@ -948,55 +988,19 @@ input[type="file"] {
                 }
             } );
         }
-
-        function checkInternetConnection()
-        {
-            /*$.ajax({
-                url: "http://www.google.com",
-                context: document.body,
-                error: function (jqXHR, exception) {
-                    $.dialog({
-                        title: 'No Internet',
-                        content: 'Please check your Internet Connection to view the Map'
-                    });
-                },
-                success: function () {
-                    alert('Online');
-                }
-            });*/
-
-            // check whether this function works (online only)
-            try
-            {
-                var x = google.maps.MapTypeId.TERRAIN;
-            } catch ( e )
-            {
-                $.dialog( {
-                    title: 'No Internet',
-                    content: 'Please check your Internet Connection to view the Map'
-                } );
-            }
-        }
+ 
     </script>
-
-    <script>
-        $( window ).load( function ()
-        {
-            // everything’s finished loaded code here…
-            checkInternetConnection();
-        } );
-    </script>
-
+  
     <script>
         function showStep1MandatoryFields()
         {
-            var Customers = $( "#<%=ddlCustomers.ClientID%>" );
-            if (Customers.find("option:selected").text().trim() == "Select Customer") {
+        <%--    var Customers = $( "#<%=txtcustomers.ClientID%>" );
+            if (Customers.val() == "") {
                 
                 $("#ContentPlaceHolder1_ddlCustomers_chosen").addClass('manField');
                 return false;
             }
-            else { $("#ContentPlaceHolder1_ddlCustomers_chosen").removeClass('manField'); }
+            else { $("#ContentPlaceHolder1_ddlCustomers_chosen").removeClass('manField'); }--%>
 
             var RegisteredCompany = $( "#<%=ddlRegisteredCompany.ClientID%>" );
             if ( RegisteredCompany.find( "option:selected" ).text().trim() == "Please Select" )
@@ -1194,7 +1198,7 @@ input[type="file"] {
 
         function hideStep1MandatoryFields()
         {
-            $( "#<%=ddlCustomers.ClientID%>" ).removeClass( 'manField' );
+            <%--$( "#<%=ddlCustomers.ClientID%>" ).removeClass( 'manField' );--%>
             $( "#<%=ddlRegisteredCompany.ClientID%>" ).removeClass( 'manField' );
             $( "#<%=ddlInsurance.ClientID%>" ).removeClass( 'manField' );
             $( "#<%=txtCollectionDate.ClientID%>" ).removeClass( 'manField' );
@@ -1725,7 +1729,7 @@ input[type="file"] {
             {
                 vEstimatedValue = roundOffEstimatedValue( vEstimatedValue );
             }
-            //debugger;
+            //
             var vTableRowLast = "";
             vTableRowLast += "<tr>";
             vTableRowLast += "<td>" + vPickupCategory + "</td>";
@@ -1773,7 +1777,7 @@ input[type="file"] {
         function addMultipleRowBookPickup() {
             var sRows = prompt("How many Rows?", "2");
             var iRows = 0;
-            debugger;
+            
             try {
                 iRows = parseInt(sRows);
                 var rowCount = $('#myTable >tbody').find('tr').length;
@@ -1802,7 +1806,7 @@ input[type="file"] {
         }
 
         function CopyFirstRow(rowCount) {
-            debugger;
+            
             var vMyTable_PickupCategory = "";
             var vMyTable_PickupCategoryValue = "";
 
@@ -1818,7 +1822,7 @@ input[type="file"] {
             var vMyTable_PredefinedEstimatedValue = "";
 
             $('#myTable >tbody >tr').each(function (index, val) {
-                debugger;
+                
                 
                 if(rowCount == val.rowIndex)
                 {
@@ -1857,7 +1861,7 @@ input[type="file"] {
                 //alert(vMyTable_PickupCategory);
 
                 $('#myTable >tbody >tr').each(function (index, val) {
-                    debugger;
+                    
                     if (rowCount < val.rowIndex)
                     {
                         var vMyTable_PickupCategoryId = $(this).closest("tr").find('select:eq(0)').attr("id");
@@ -2003,8 +2007,8 @@ input[type="file"] {
 
     function checkMyPackageDetails()
     {
-        var Customers = $( "#<%=ddlCustomers.ClientID%>" );
-        var vCustomers = Customers.find( "option:selected" ).text().trim();
+        var Customers = $( "#<%=txtcustomers.ClientID%>" );
+        var vCustomers = Customers.val()
 
         var RegisteredCompany = $( "#<%=ddlRegisteredCompany.ClientID%>" );
         var vRegisteredCompany = RegisteredCompany.find( "option:selected" ).text().trim();
@@ -2291,7 +2295,7 @@ input[type="file"] {
 
             //==========Check Category In Booking Table
             $('#myTable >tbody >tr').each(function (index, val) {
-                debugger;
+                
                 if (index >= 0) {
                     var vMyTable_PickupCategoryId = $(this).closest("tr").find('select:eq(0)').attr("id");
                     var vMyTable_PickupCategory = $(this).closest("tr").find('select:eq(0)').find("option:selected").text().trim();
@@ -2735,7 +2739,8 @@ input[type="file"] {
 
         function getCustomerIdFromCustomerName(CustomerId)
         {
-            //alert(CustomerId);
+            //selected customerid to get name of customername
+            CustomerId = $("#<%=hdnEmpId.ClientID%>").val();
             $.ajax( {
                 method: "POST",
                 contentType: "application/json; charset=utf-8",
@@ -2746,8 +2751,8 @@ input[type="file"] {
                 {
                     var jdata = JSON.parse(result.d);
                     var CustomerId = jdata["CustomerId"];
-                    //alert(CustomerId);
-                    debugger;
+                  
+
                     if (jdata["CustomerName"] != null || jdata["CustomerName"] != ""){
                         $('#<%=txtCollectionName.ClientID%>').val(jdata["CustomerName"]);
                     }
@@ -2880,7 +2885,7 @@ input[type="file"] {
                                 }
                                 $('#<%=txtCollectionName.ClientID%>').attr('readonly', 'readonly');
                                 $('#<%=txtPickupEmailAddress.ClientID%>').attr('readonly', 'readonly');
-                                //debugger;
+                                //
                                 $("#<%=hfPickupLatitude.ClientID%>").val(jdata[0]["LatitudePickup"]);
                                 $("#<%=hfPickupLongitude.ClientID%>").val(jdata[0]["LongitudePickup"]);
 
@@ -2892,7 +2897,7 @@ input[type="file"] {
                                 var optionsCollection = {
                                     bounds: defaultCollectionBounds
                                 };
-                                //debugger;
+                                //
                                 //var placeCollection = placesCollection.getPlace();
                                 var addressCollection = jdata[0]["Address"];
                                 var latitudeCollection = jdata[0]["LatitudePickup"];
@@ -2974,7 +2979,7 @@ input[type="file"] {
                                 if (jdata[0]["Title"] != null && jdata[0]["Title"] != "") {
                                     $('#DeliveryCustomerTitle').val(jdata[0]["Title"]);
                                 }
-                                //debugger;
+                                //
                                 $("#<%=hfDeliveryLatitude.ClientID%>").val(jdata[0]["LatitudeDelivery"]);
                                 $("#<%=hfDeliveryLongitude.ClientID%>").val(jdata[0]["LongitudeDelivery"]);
 
@@ -2986,7 +2991,7 @@ input[type="file"] {
                                 var optionsCollection = {
                                     bounds: defaultCollectionBounds
                                 };
-                                //debugger;
+                                //
                                 //var placeCollection = placesCollection.getPlace();
                                 var addressCollection = jdata[0]["Address"];
                                 var latitudeCollection = jdata[0]["LatitudePickup"];
@@ -3215,7 +3220,7 @@ input[type="file"] {
 
             function uploadImageFile()
             {
-                debugger;
+                
                 var files = "";
                 var OuterLoopCount = 0;
                 var BookingId = $( "#<%=hfBookingId.ClientID%>" ).val().trim();
@@ -3233,7 +3238,7 @@ input[type="file"] {
 
                     $( "#myTable >tbody >tr" ).each( function ()
                     {
-                        debugger;
+                        
                         var InnerLoopCount = 0;
                         InnerLoopCount = $('#apnd_div' + OuterLoopCount).find('.mlty_ple_upload').length;
                         //alert('OuterLoopCount= ' + OuterLoopCount + ' InnerLoopCount= ' + InnerLoopCount);
@@ -3256,7 +3261,7 @@ input[type="file"] {
                                 //var ImageUrl = 'https://firebasestorage.googleapis.com/v0/b/jobycoimages.appspot.com/o/images%2F' + BookingId + '-' + files[0].name + '?alt=media';
                                 var ImageUrl = 'https://firebasestorage.googleapis.com/v0/b/jobycodirect.appspot.com/o/images%2F' + BookingId + '-' + files[0].name + '?alt=media';
                                 
-                                debugger;
+                                
 
                                 //Save in the Customer Portal
                                 //New Code for Image Insert
@@ -3338,7 +3343,7 @@ input[type="file"] {
 
                 //        var ImageName = files[i].name;
                 //        var ImageUrl = 'https://firebasestorage.googleapis.com/v0/b/jobycoimages.appspot.com/o/images%2F' + files[i].name + '?alt=media';
-                //        debugger;
+                //        
                         
                 //        var CountImg = $("#ulOutput li").find('img').length;
                 //        for (var j = 0; j < CountImg; j++) {
@@ -3425,20 +3430,20 @@ input[type="file"] {
   //  appId: "1:99926466301:web:3f2823c97ced3d3839e894"
     //};
     // Your web app's Firebase configuration
-    var firebaseConfig = {
-        apiKey: "AIzaSyA54QLnBT-Qem_nEY52-FuDHwPjxR7pn-E",
-        authDomain: "jobycodirect.firebaseapp.com",
-        databaseURL: "https://jobycodirect.firebaseio.com",
-        projectId: "jobycodirect",
-        storageBucket: "jobycodirect.appspot.com",
-        messagingSenderId: "731181140810",
-        appId: "1:731181140810:web:f3df80f48d12b893bc0fb3",
-        measurementId: "G-YW1GZQEXKC"
-    };
+  //  var firebaseConfig = {
+  //      apiKey: "AIzaSyA54QLnBT-Qem_nEY52-FuDHwPjxR7pn-E",
+  //      authDomain: "jobycodirect.firebaseapp.com",
+  //      databaseURL: "https://jobycodirect.firebaseio.com",
+  //      projectId: "jobycodirect",
+  //      storageBucket: "jobycodirect.appspot.com",
+  //      messagingSenderId: "731181140810",
+  //      appId: "1:731181140810:web:f3df80f48d12b893bc0fb3",
+  //      measurementId: "G-YW1GZQEXKC"
+  //  };
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  //// Initialize Firebase
+  //firebase.initializeApp(firebaseConfig);
+  //firebase.analytics();
 </script>
 
 
@@ -3465,7 +3470,7 @@ input[type="file"] {
             vErrMsg.css("display", "none");
             vErrMsg.css("background-color", "#f9edef");
             vErrMsg.css("color", "red");
-            //debugger;
+            //
             <%--var IsValidAdd = CheckValidGeoLocation(vCollectionAddressLine1, 'Pickup');
             if (IsValidAdd)
             {
@@ -3635,7 +3640,7 @@ input[type="file"] {
             vErrMsg.css( "color", "red" );
 
             <%--var IsValidAdd = CheckValidGeoLocation(vDeliveryAddressLine1, 'Delivery');
-            debugger;
+            
             
 
             if (IsValidAdd)
@@ -3794,7 +3799,7 @@ input[type="file"] {
             geocoder.geocode({ 'address': address }, function (results, status) {
 
                 if (status == google.maps.GeocoderStatus.OK) {
-                    //debugger;
+                    //
                     var latitude = results[0].geometry.location.latitude;
                     var longitude = results[0].geometry.location.longitude;
                     //2nd Block
@@ -3805,7 +3810,7 @@ input[type="file"] {
                                 geocoder.geocode({ 'address': address }, function (results, status) {
 
                                     if (status == google.maps.GeocoderStatus.OK) {
-                                        //debugger;
+                                        //
                                         var latitude = results[0].geometry.location.latitude;
                                         var longitude = results[0].geometry.location.longitude;
                                         //alert(latitude);
@@ -3948,7 +3953,7 @@ input[type="file"] {
             //var EmailID = $( "#<%//=txtPickupEmailAddress.ClientID%>" ).val().trim();
             var Password = "";
 
-            var FullName = $( "#<%=ddlCustomers.ClientID%>" ).find( "option:selected" ).text().trim();
+            var FullName = $("#<%=txtcustomers.ClientID%>").val();//find( "option:selected" ).text().trim();
             var Title = "";
             var FirstName = "";
             var LastName = "";
@@ -4328,7 +4333,7 @@ input[type="file"] {
                 {
                     //timeDuration = 4000;
                     var BookPickupDetails = "";
-                    //debugger;
+                    //
                     //Finally saving BookPickup Data
                     $( '#tblConfirmItems tbody > tr' ).each( function ()
                     {
@@ -4394,7 +4399,7 @@ input[type="file"] {
         }
 
         function proceedToPayment() {
-            debugger;
+            
             saveBooking();
                 var EmailID = $("#<%=txtPickupEmailAddress.ClientID%>").val().trim();
 
@@ -4542,7 +4547,7 @@ input[type="file"] {
         }
 
         //function CheckValidGeoLocation(Address, PickupOrDelivery) {
-        //    debugger;
+        //    
         //    var Success = false;
         //    var geocoder = new google.maps.Geocoder();
         //    var address = Address;
@@ -4550,7 +4555,7 @@ input[type="file"] {
         //    geocoder.geocode({ 'address': address }, function (results, status) {
 
         //        if (status == google.maps.GeocoderStatus.OK) {
-        //            debugger;
+        //            
         //            var latitude = results[0].geometry.location.latitude;
         //            var longitude = results[0].geometry.location.longitude;
         //            //alert(latitude);
@@ -4595,7 +4600,7 @@ input[type="file"] {
                         <div class="col-sm-6">
                                     <a style="text-decoration:underline; color:white!important; font-weight:bold;" href="../Customers/AddCustomer.aspx">Add New Customer</a>
                                     <label for="registered-company" class="control-label">Select Customer Name <span style="color: red">*</span></label>
-                                    <asp:DropDownListChosen ID="ddlCustomers" runat="server"
+                                    <%--<asp:DropDownListChosen ID="ddlCustomers" runat="server"
                                         CssClass="vat-option label-lgt"
                                         DataPlaceHolder="Please select an option"
                                         AllowSingleDeselect="true"
@@ -4603,7 +4608,11 @@ input[type="file"] {
                                         DisableSearchThreshold="10"
                                         onchange="getCustomerIdFromCustomerName(this.value);clearErrorMessage();">
                                         <asp:ListItem Selected="True">Please Select</asp:ListItem>
-                                    </asp:DropDownListChosen>
+                                    </asp:DropDownListChosen>--%>
+                            <asp:TextBox  runat="server"  ID="txtcustomers" placeholder="Type to search" onchange="return getCustomerIdFromCustomerName(this.value);clearErrorMessage();" CssClass="form-control"    AutoCompleteType="Disabled"              ClientIDMode="Static"  Width="540" >
+
+                            </asp:TextBox>  
+                            <asp:HiddenField              runat="server"              ClientIDMode="Static"              ID="hdnEmpId" />
                             <div class="visible_dropdown">
                                  <label for="registered-company" class="control-label">Select Address<span style="color: red"></span></label>
                                 <asp:DropDownList ID="ddlAddress" runat="server"

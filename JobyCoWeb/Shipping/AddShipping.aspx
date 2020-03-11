@@ -11,7 +11,8 @@
     <script src="/Scripts/jquery.dataTables.min.js"></script>
     <script src="/js/jquery.blockUI.js"></script>
     <script src="../js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
+    <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
+
     <!-- New Script Added for Dynamic Menu Population
 ================================================== -->
     <style>
@@ -233,7 +234,7 @@
             dataType: "json",
             success: function ( result )
             {
-                debugger;
+                
                 //alert(result.d);
                     
                 if (result.d == 'error') {
@@ -258,7 +259,7 @@
 
         function getAllContainerType()
         {
-            debugger;
+            
                     $.ajax({
                         type: "POST",
                         contentType: "application/json; charset=utf-8",
@@ -610,7 +611,7 @@
     <script>
         // Read a page's GET URL variables and return them as an associative array.
         function getUrlVars() {
-            debugger;
+            
             var vars = [], hash;
             var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
             for (var i = 0; i < hashes.length; i++) {
@@ -808,7 +809,7 @@
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (result) {
-                    debugger;
+                    
                     var Jdata = JSON.parse(result.d);
                     var len = Jdata.length;
                     //alert(Jdata[0]["LocationAddress"]);
@@ -1451,7 +1452,7 @@
                 JsonData.BookingId = BookingId;
                 JsonData.IsAdd = 1;
                 JsonData.ContainerId = '';
-                debugger;
+                
                 //alert(JSON.stringify(JsonData));
                 $.ajax({
                     type: "POST",
@@ -1483,7 +1484,7 @@
                         }
                     },
                         error: function (response) {
-                            debugger;
+                            
                             alert("Error : " + response);
                         }
             });
@@ -1519,7 +1520,7 @@
                 JsonData.BookingId = BookingId;
                 JsonData.IsAdd = 1;
                 JsonData.ContainerId = ContainerId;
-                debugger;
+                
                 //alert(JSON.stringify(JsonData));
                 $.ajax({
                     type: "POST",
@@ -1552,7 +1553,7 @@
 
                     },
                     error: function (response) {
-                        debugger;
+                        
                         alert("Error : " + response);
                     }
                 });
@@ -1595,7 +1596,7 @@
                     //alert(len);
                     $("#add_table").html('');
                     if (len > 0) {
-                       // debugger;
+                       // 
                         
                         for (var i = 0; i < len; i++)
                         {
@@ -1793,7 +1794,7 @@
                     }
                 },
                 error: function (response) {
-                    debugger;
+                    
                     alert("Error : " + response);
                 }
             });
@@ -1806,7 +1807,7 @@
             JsonData.BookingId = BookingId;
             JsonData.IsAdd = 1;
             JsonData.ContainerId = ContainerId;
-            debugger;
+            
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
@@ -1829,7 +1830,7 @@
                     clearShippingModalPopup();
                     var len = jdata.length;
                     //alert("Length=" + len + " BookingId=" + jdata[0]["BookingId"]);
-                    //debugger;
+                    //
                     if (len > 0) { 
                     $("#PickupName" + row).text(jdata[0]["PickupName"]);
                     $("#PickupAddress" + row).text(jdata[0]["PickupAddress"]);
@@ -1907,7 +1908,7 @@
             JsonData.BookingId = BookingId;
             JsonData.IsAdd = 1;
             JsonData.ContainerId = ContainerId;
-             debugger;
+             
             $.ajax({
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
@@ -1930,7 +1931,7 @@
                     clearShippingModalPopup();
                     var len = jdata.length;
                     //alert("Length=" + len + " BookingId=" + jdata[0]["BookingId"]);
-                    //debugger;
+                    //
                     if (len > 0) {
                         $("#cPickupName" + row).text(jdata[0]["PickupName"]);
                         $("#cPickupAddress" + row).text(jdata[0]["PickupAddress"]);
@@ -1994,7 +1995,7 @@
                     }
                 },
                 error: function (response) {
-                    debugger;
+                    
                     alert("Error");
                 }
             });
@@ -2003,7 +2004,7 @@
         function saveSingleShippingItem(BookingId, PickupId, row) {
 
             if (checkBlankControls()) {
-                debugger;
+                
                 //alert('saveSingleShippingItem function' + BookingId + ' ' + PickupId + ' ' + row);
                 var ShippingId = $("#<%=txtShippingReferenceNumber.ClientID%>").val().trim();
                 var ContainerId = $("#<%=ddlContainerNo.ClientID%>").find('option:selected').text().trim();
@@ -3088,4 +3089,4 @@
 </asp:Content>
 
 
-
+

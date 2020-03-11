@@ -19,6 +19,8 @@ namespace EntityLayer
         public string DeliveryPostCode { get; set; }
         public string PickupCustomerTitle { get; set; }
         public string DeliveryCustomerTitle { get; set; }
+        public string CreatedBy { get; set; }
         public int Id { get; set; }
+        public string IsRegisteredUser { get; set; }
     }
 }

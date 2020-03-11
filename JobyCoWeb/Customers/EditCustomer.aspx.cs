@@ -69,29 +69,29 @@ namespace JobyCoWeb.Customers
             return GetDropDownValues(7, 10);
         }
 
-        [WebMethod]
-        public static string GetAllCustomers()
-        {
-            DataTable dtCustomer = objDB.GetAllCustomers();
-            List<EntityLayer.clsCustomers> lstCustomer = new List<EntityLayer.clsCustomers>();
+        //[WebMethod]
+        //public static string GetAllCustomers()
+        //{
+        //    DataTable dtCustomer = objDB.GetAllCustomers();
+        //    List<EntityLayer.clsCustomers> lstCustomer = new List<EntityLayer.clsCustomers>();
 
-            foreach (DataRow drCustomer in dtCustomer.Rows)
-            {
-                EntityLayer.clsCustomers objCustomer = new EntityLayer.clsCustomers();
+        //    foreach (DataRow drCustomer in dtCustomer.Rows)
+        //    {
+        //        EntityLayer.clsCustomers objCustomer = new EntityLayer.clsCustomers();
 
-                objCustomer.CustomerId = drCustomer["CustomerId"].ToString();
-                objCustomer.EmailID = drCustomer["EmailID"].ToString();
-                objCustomer.CustomerName = drCustomer["CustomerName"].ToString();
-                objCustomer.DOB = Convert.ToDateTime(drCustomer["DOB"].ToString());
-                objCustomer.Address = drCustomer["Address"].ToString();
-                objCustomer.Mobile = drCustomer["Mobile"].ToString();
+        //        objCustomer.CustomerId = drCustomer["CustomerId"].ToString();
+        //        objCustomer.EmailID = drCustomer["EmailID"].ToString();
+        //        objCustomer.CustomerName = drCustomer["CustomerName"].ToString();
+        //        objCustomer.DOB = Convert.ToDateTime(drCustomer["DOB"].ToString());
+        //        objCustomer.Address = drCustomer["Address"].ToString();
+        //        objCustomer.Mobile = drCustomer["Mobile"].ToString();
 
-                lstCustomer.Add(objCustomer);
-            }
+        //        lstCustomer.Add(objCustomer);
+        //    }
 
-            var js = new JavaScriptSerializer();
-            return js.Serialize(lstCustomer);
-        }
+        //    var js = new JavaScriptSerializer();
+        //    return js.Serialize(lstCustomer);
+        //}
 
         [WebMethod]
         public static void UpdateCustomerDetails

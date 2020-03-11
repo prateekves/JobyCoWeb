@@ -127,7 +127,7 @@ function getCurrentDateDetails() {
 }
 
 function getFormattedDateUK(date) {
-    debugger;
+    
     var date = new Date(parseInt(date.substr(6)));
     var month = date.getMonth() + 1;
     var day = date.getDate();

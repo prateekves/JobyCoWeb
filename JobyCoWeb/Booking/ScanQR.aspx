@@ -132,7 +132,7 @@
                 //var BookingId = ClosestTr.find('td').eq(1).text();
                 //var PickupId = ClosestTr.find('td').eq(2).text();
                 //var ContainerId = "";
-                debugger;
+                
                 var QRCode = ClosestTr.find('img').attr('src');
 
                 getBookingItemsHistory(QRCode);
@@ -229,7 +229,7 @@
         function SearchItems()
         {
             $("#tblSearchedItem tbody tr").remove();
-            debugger;
+            
             //$('input:checkbox').removeAttr('checked');
 
             var ContainerNoORBookingNo = $("#<%=txtContainerNoORBookingNo.ClientID%>").val().trim();
@@ -252,7 +252,7 @@
                 },
                 success: function (result) {
                     var jdata = JSON.parse(result.d);
-                    debugger;
+                    
                     //========================= clear destroy
                     if ($.fn.dataTable.isDataTable('#tblSearchedItem')) {
                         $('#tblSearchedItem').DataTable().clear().destroy();
@@ -453,7 +453,7 @@
                     var $actualrow = $(row);
                     $checkbox = $actualrow.find(':checkbox:checked');
 
-                        debugger;
+                        
                     if ($checkbox.is(':checked')) {
 
                         var BookingId = $(this).find('td:eq(1)').text().trim();
@@ -681,7 +681,7 @@
 
         function MaillingTheChangedStatus() {
             var ContainerNoORBookingNo = $("#<%=txtContainerNoORBookingNo.ClientID%>").val().trim();
-            debugger;
+            
                 var jQueryDataTableContent = "<table border=1>";
                 jQueryDataTableContent += "<tr>";
                 jQueryDataTableContent += "<th>BookingId</th>";

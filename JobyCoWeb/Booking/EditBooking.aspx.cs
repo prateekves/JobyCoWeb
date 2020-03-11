@@ -309,7 +309,8 @@ namespace JobyCoWeb.Booking
                             String sql = @"Select PDA.PickupTitle, PDA.DeliveryTitle From[dbo].[OrderBooking] OB
                             INNER JOIN[dbo].[PickupDeliveryAddress]
                                     PDA ON PDA.Ids = OB.Address_Id
-                            Where OB.CustomerId = '"+sCustomerId+"' AND OB.BookingId = '"+sBookingId+"'";
+                            Where  OB.BookingId = '" + sBookingId + "'";
+                            //Where OB.CustomerId = '"+sCustomerId+"' AND OB.BookingId = '"+sBookingId+"'";
 
                             DataTable dt = objOP.Retrieve_Data(sql, "PickupDeliveryAddress");
 

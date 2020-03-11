@@ -64,7 +64,7 @@ namespace DataAccessLayer
 
             //Building Query
             string sQuery = "select * from " + sTable
-                + " where " + sField + " = '" + sFieldValue + "'";
+                + " where " + sField + " = '" + sFieldValue + "' AND Locked=0";
 
             //Filling DataTable
             DataTable dtCheck = Retrieve_Data(sQuery, sTable);
@@ -664,10 +664,19 @@ namespace DataAccessLayer
             string sField1, string sField1Value)
         {
             string sField2Value = "";
-
+            string sQuery = string.Empty;
             //Building Query 
-            string sQuery = "select " + sField2 + " from " + sTable;
-            sQuery += " where " + sField1 + " = '" + sField1Value + "'";
+            if (sTable.ToUpper() == "USERS")
+            {
+
+                sQuery = "select Top 1 " + sField2 + " from " + sTable;
+                sQuery += " where " + sField1 + " = '" + sField1Value + "' and Locked=0";
+            }
+            else
+            {
+                sQuery = "select " + sField2 + " from " + sTable;
+                sQuery += " where " + sField1 + " = '" + sField1Value + "'";
+            }
 
             //Filling DataTable
             DataTable dtField2Value = Retrieve_Data(sQuery, sTable);

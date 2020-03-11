@@ -132,7 +132,7 @@
                         data: "{ ContainerId : '" + ContainerId + "'}",
                         dataType: "json",
                         success: function (data) {
-                            debugger;
+                            
                             var Jdata = JSON.parse(data.d);
                             //alert('1' + Jdata[0]["ContainerTypeId"]);
                             $("#<%=txtContainerNumber.ClientID%>").val(Jdata[0]["ContainerNumber"]);
@@ -175,7 +175,7 @@
         }
 
     function checkBlankControls() {
-        debugger;
+        
         var vContainerNumber = $("#<%=txtContainerNumber.ClientID%>");
         var vContainerName = $("#<%=ddlContainerType.ClientID%>");
         var vCompanyName = $("#<%=txtCompanyName.ClientID%>");
@@ -239,7 +239,7 @@
             //mainMenu();
 
             //alert('Add Container Function');
-            debugger;
+            
 
             var ContainerNumber = $("#<%=txtContainerNumber.ClientID%>").val().trim();
             var ContainerTypeId = $("#<%=ddlContainerType.ClientID%>").find('option:selected').val().trim();
@@ -275,7 +275,7 @@
             dataType: "json",
             success: function ( result )
             {
-                debugger;
+                
                 if (result.d == 'success' || ContainerNumber.toUpperCase() == result.d) {
                     initialisedControls();
                     $('#Container-bx-msg').text('Container Saved Successfully..');

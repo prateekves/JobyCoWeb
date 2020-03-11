@@ -625,7 +625,7 @@
         
         var sMessage = "";
         $('#dtPrintDriverJob tbody tr').each(function (i, row) {
-            debugger;
+            
             var $actualrow = $(row);
             $checkbox = $actualrow.find(':checkbox');
             var BookingId = $(this).find('td:eq(2)').text().trim();
@@ -1816,7 +1816,7 @@
         var WageType = "";
 
         var vCtr = 0;
-        debugger;
+        
 
             var AssignId = '';
             DriverId = $("#<%=hfDriverId.ClientID%>").val().trim();

@@ -32,7 +32,7 @@
         }
 
         function getCookie(cname) {
-            debugger;
+            
             var name = cname + "=";
             var decodedCookie = decodeURIComponent(document.cookie);
             var ca = decodedCookie.split(';');
@@ -67,7 +67,7 @@
         } else {
             $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyA079i9v8OTWYxstBB53I-nydb8zt1c_tk&libraries=places&callback=InitializeMap', function () {
                 //InitializeMap();
-                debugger;
+                
                 initializeGoogleLocation();
                 showPosition();
             });
@@ -78,14 +78,14 @@
             geocoder = new google.maps.Geocoder();
         }
         function codeLatLng(lat, lng) {
-            debugger;
+            
             var latlng = new google.maps.LatLng(lat, lng);
             geocoder.geocode({ 'latLng': latlng }, function (results, status) {
                 if (status == google.maps.GeocoderStatus.OK) {
                     console.log(results)
                     if (results[1]) {
                         //formatted address
-                        debugger;
+                        
                         //alert(results[0].formatted_address);
                         //setCookie('setlocation', results[0].formatted_address, 1); 
                         //find country name
@@ -140,7 +140,7 @@
     
     // Define callback function for successful attempt
     function successCallback(position) {
-        debugger;
+        
         //PositionResult.innerHTML = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
         codeLatLng(position.coords.latitude, position.coords.longitude);
     }

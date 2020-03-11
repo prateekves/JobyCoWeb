@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+
 #region Required NameSpaces for Download
 
 using System.IO;
@@ -84,23 +85,30 @@ namespace JobyCoWeb.Users
         [WebMethod]
         public static string GetAllUsers()
         {
-            DataTable dtUsers = objDB.GetAllUsers();
+            BOLogin ObjLogin = new BOLogin();
+            ObjLogin = (BOLogin)HttpContext.Current.Session["Login"];
+
+            DataTable dtUsers = objDB.GetAllUsers(ObjLogin.EMAILID);
             List<EntityLayer.clsUsers> lstUsers = new List<EntityLayer.clsUsers>();
 
             foreach (DataRow drUsers in dtUsers.Rows)
             {
                 EntityLayer.clsUsers objUsers = new EntityLayer.clsUsers();
 
+                objUsers.id = drUsers["id"].ToString();
                 objUsers.UserId = drUsers["UserId"].ToString();
                 objUsers.EmailID = drUsers["EmailID"].ToString();
                 objUsers.CustomerName = drUsers["CustomerName"].ToString();
+                objUsers.FirstName = drUsers["FirstName"].ToString();
+                objUsers.LastName = drUsers["LastName"].ToString();
+                objUsers.Title = drUsers["Title"].ToString();
                 objUsers.DateOfBirth = Convert.ToDateTime(drUsers["DateOfBirth"].ToString());
-                //objUsers.Address = drUsers["Address"].ToString();
-                //objUsers.Town = drUsers["Town"].ToString();
-                //objUsers.Country = drUsers["Country"].ToString();
-                //objUsers.PostCode = drUsers["PostCode"].ToString();
-                //objUsers.Mobile = drUsers["Mobile"].ToString();
-                //objUsers.Telephone = drUsers["Telephone"].ToString();
+                objUsers.Address = drUsers["Address"].ToString();
+                objUsers.Town = drUsers["Town"].ToString();
+                objUsers.Country = drUsers["Country"].ToString();
+                objUsers.PostCode = drUsers["PostCode"].ToString();
+                objUsers.Mobile = drUsers["Mobile"].ToString();
+                objUsers.Telephone = drUsers["Telephone"].ToString();
                 objUsers.UserRole = drUsers["UserRole"].ToString();
 
                 lstUsers.Add(objUsers);
@@ -182,12 +190,18 @@ namespace JobyCoWeb.Users
 
         protected void btnExportPdf_Click(object sender, EventArgs e)
         {
-            DataTable dtUsers = objDB.GetAllUsers();
+            BOLogin ObjLogin = new BOLogin();
+            ObjLogin = (BOLogin)HttpContext.Current.Session["Login"];
+
+            DataTable dtUsers = objDB.GetAllUsers(ObjLogin.EMAILID);
             objCM.DownloadPDF(dtUsers, "User");
         }
         protected void btnExportExcel_Click(object sender, EventArgs e)
         {
-            DataTable dtUsers = objDB.GetAllUsers();
+            BOLogin ObjLogin = new BOLogin();
+            ObjLogin = (BOLogin)HttpContext.Current.Session["Login"];
+
+            DataTable dtUsers = objDB.GetAllUsers(ObjLogin.EMAILID);
             objCM.DownloadExcel(dtUsers, "User");
         }
 

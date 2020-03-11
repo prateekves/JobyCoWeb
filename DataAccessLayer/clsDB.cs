@@ -1597,6 +1597,43 @@ namespace DataAccessLayer
 
             return dtDDV;
         }
+        public DataTable GetCustomerAutoComplete(string SearchParam)
+        {
+            DataSet dsDDV = new DataSet();
+            DataTable dtDDV = new DataTable();
+
+            SqlConnection conDDV = new SqlConnection(sConnectionString);
+
+            try
+            {
+                SqlCommand cmdDDV = new SqlCommand("spGetCustomerAutoComplete", conDDV);
+                cmdDDV.CommandType = CommandType.StoredProcedure;
+                cmdDDV.Parameters.AddWithValue("@SearchParam", SearchParam);
+
+                SqlDataAdapter daDDV = new SqlDataAdapter(cmdDDV);
+                daDDV.Fill(dsDDV);
+                if (dsDDV != null && dsDDV.Tables.Count > 0)
+                {
+                    dtDDV = dsDDV.Tables[0];
+                }
+
+
+                //conDDV.Close();
+            }
+            catch (Exception ex)
+            {
+                //throw ex;
+                sErrMsg = ex.Message + Environment.NewLine;
+                File.AppendAllText(sExceptionLogFilePath, sErrMsg);
+                //conDDV.Close();
+            }
+            finally
+            {
+                //conDDV.Close();
+            }
+
+            return dtDDV;
+        }
 
         public DataSet GetShippingDetailsFromContainerNo(string containerNo)
         {
@@ -2243,7 +2280,7 @@ namespace DataAccessLayer
             return dtGAS;
         }
         //Debashish
-        public DataTable GetAllUsers()
+        public DataTable GetAllUsers(string EmailId)
         {
             DataSet dsGAS = new DataSet();
             DataTable dtGAS = new DataTable();
@@ -2253,6 +2290,7 @@ namespace DataAccessLayer
             try
             {
                 SqlCommand cmdGAS = new SqlCommand("spGetAllUsers", conGAS);
+                cmdGAS.Parameters.AddWithValue("@EmailId", EmailId);
                 cmdGAS.CommandType = CommandType.StoredProcedure;
 
                 SqlDataAdapter daGAS = new SqlDataAdapter(cmdGAS);
@@ -3910,6 +3948,64 @@ namespace DataAccessLayer
             return dtGAW;
         }
 
+        public DataTableResponse GetAllCustomersServerSide(DataTableParameter dtParams, string Search)
+        {
+            DataSet dsGAC = new DataSet();
+            DataTable dtGAC = new DataTable();
+            DataTable dtFilterTotal = new DataTable();
+            DataTableResponse dtResponse = new DataTableResponse();
+            SqlConnection conGAC = new SqlConnection(sConnectionString);
+
+            try
+            {
+                SqlCommand cmdGAC = new SqlCommand("spGetAllCustomers", conGAC);
+                cmdGAC.Parameters.AddWithValue("@PageIndex", dtParams.start);
+                cmdGAC.Parameters.AddWithValue("@PageSize", dtParams.length);
+                cmdGAC.Parameters.AddWithValue("@Search", Search);
+                cmdGAC.CommandType = CommandType.StoredProcedure;
+
+                SqlDataAdapter daGAC = new SqlDataAdapter(cmdGAC);
+                dsGAC = new DataSet();
+                daGAC.Fill(dsGAC);
+                dtGAC = dsGAC.Tables[0];
+                if(dsGAC.Tables[1] != null)
+                {
+                    dtFilterTotal = dsGAC.Tables[1];
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                //throw ex;
+                sErrMsg = ex.Message + Environment.NewLine;
+                File.AppendAllText(sExceptionLogFilePath, sErrMsg);
+                //conGAC.Close();
+            }
+            finally
+            {
+                //conGAC.Close();
+            }
+            List<dtData> lstData = dtGAC.AsEnumerable()
+                                  .Select(x => new dtData()
+                                  {
+                                      CustomerId = x.Field<string>("CustomerId"),
+                                      CustomerName = x.Field<string>("CustomerName"),
+                                      EmailID = x.Field<string>("EmailID"),
+                                      DOB = x.Field<DateTime>("DOB"),
+                                      Address = x.Field<string>("Address"),
+                                      Mobile = x.Field<string>("Mobile"),
+                                      //PostCode = x.Field<string>("PostCode"),
+                                      //LatitudePickup = x.Field<decimal>("LatitudePickup"),
+                                      //LongitudePickup = x.Field<decimal>("LongitudePickup"),
+                                      //Title = x.Field<string>("Title"),
+                                      //sDOB = x.Field<string>("sDOB"),
+                                  }).ToList();
+            dtResponse.data = lstData;
+            dtResponse.recordsFiltered = lstData.Count;
+            dtResponse.recordsTotal = Convert.ToInt32(dtFilterTotal.Rows[0][0]);
+            dtResponse.draw = dtParams.draw;
+            return dtResponse;
+        }
         public DataTable GetAllCustomers()
         {
             DataSet dsGAC = new DataSet();
@@ -3920,6 +4016,8 @@ namespace DataAccessLayer
             try
             {
                 SqlCommand cmdGAC = new SqlCommand("spGetAllCustomers", conGAC);
+                cmdGAC.Parameters.AddWithValue("@PageIndex", 1);
+                cmdGAC.Parameters.AddWithValue("@PageSize", 40000);
                 cmdGAC.CommandType = CommandType.StoredProcedure;
 
                 SqlDataAdapter daGAC = new SqlDataAdapter(cmdGAC);
@@ -4467,6 +4565,8 @@ namespace DataAccessLayer
                 cmdBooking.Parameters.AddWithValue("@StatusDetails", b.StatusDetails);
                 cmdBooking.Parameters.AddWithValue("@PickupCustomerTitle", b.PickupCustomerTitle);
                 cmdBooking.Parameters.AddWithValue("@DeliveryCustomerTitle", b.DeliveryCustomerTitle);
+                cmdBooking.Parameters.AddWithValue("@CreatedBy", b.CreatedBy);
+                cmdBooking.Parameters.AddWithValue("@IsRegisteredUser", b.IsRegisteredUser);
 
                 conBooking.Open();
                 cmdBooking.ExecuteNonQuery();

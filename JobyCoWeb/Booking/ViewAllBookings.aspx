@@ -172,7 +172,7 @@
                     $('#StatusDetails').text(jData[0]['StatusDetails']);
                     $("#PCustomerTitle").text(jData[0]['PickupCustomerTitle']);
                     $("#DCustomerTitle").text(jData[0]['DeliveryCustomerTitle']);
-                    debugger;
+                    
                     if (jData[0]['IsPicked'] == "1") {
                         $( '#btnEditBooking1' ).css( 'display', 'none' );
                     }
@@ -324,7 +324,7 @@
 
         function getPickupDateAndTimeFromBookingId( BookingId )
         {
-            debugger;
+            
             $.ajax( {
                 method: "POST",
                 contentType: "application/json; charset=utf-8",
@@ -333,7 +333,7 @@
                 async: false,
                 success: function ( result )
                 {
-                    debugger;
+                    
                     $( '#<%=lblPickupDateTime.ClientID%>' ).text( result.d );
 
                     //Get LongDateTime
@@ -832,7 +832,7 @@
                     len = jdata.length;
                     //alert(len);
                     //alert(JSON.stringify(jdata));
-                    debugger;
+                    
                     var newRowContent = "";
                     for (var i = 0; i < len; i++) {
                         newRowContent += "<td style='padding: 4px 4px 4px 4px;'><img src='" + jdata[i]['ImageUrl'] + "' title='" + jdata[i]['PickupItem'] + "' alt='#' height='50' width='50'/></td>";
@@ -998,7 +998,18 @@
                                     return getFormattedDateUK(PickupDate);
                                 }
                             },
-                            
+                             {
+                                data: "CreatedBy",
+                                render: function (CreatedBy) {
+                                    return CreatedBy;
+                                }
+                            },
+                            {
+                                data: "IsRegisteredUser",
+                                render: function (IsRegisteredUser) {
+                                    return IsRegisteredUser;
+                                }
+                            },
                             {
                                 defaultContent:
                                   "<button class='view' title='View'><i class='fa fa-eye' aria-hidden='true'></i></button><button class='print' title='Print'><i class='fa fa-print' aria-hidden='true'></i></button><button class='cancel' title='Cancel or Keep This Booking'><i class='fa fa-times' aria-hidden='true'></i></button><button class='Enquiry' title='Enquiry Your Order'><i class='fa fa-map-marker' aria-hidden='true'></i></button>"
@@ -1240,7 +1251,7 @@
 
     <script>
         function proceedToPayment(BookingId) {
-            debugger;
+            
 
             //saveBooking();
                     var EmailID = $("#<%=hfEmailID.ClientID%>").val().trim();
@@ -1288,7 +1299,7 @@
                     len = jdata.length;
                     //alert(len);
                     //alert(JSON.stringify(jdata));
-                    debugger;
+                    
                     var newRowContent = "";
                     for (var i = 0; i < len; i++) {
                         newRowContent += "<td style='padding: 4px 4px 4px 4px;'><img src='" + jdata[i]['ImageUrl'] + "' title='" + jdata[i]['PickupItem'] + "' alt='#' height='50' width='50'/></td>";
@@ -1373,7 +1384,7 @@
                 var BookingId = $( '#<%=spHeaderBookingId.ClientID%>' ).text().trim().replace('#', '');
                 var OrderStatus = $('#<%=hfOrderStatus.ClientID%>').val().trim();
                 var taReason = $('#taReason').val().trim();
-                debugger;
+                
                 if (taReason.length == 0) {
                     $('#ErrReason').html('Please enter Reason');
                     //alert('Please enter Reason');
@@ -1957,6 +1968,8 @@
                                                     <th class="hideColumn">Order Status</th>
                                                     <th>Pickup Post Code</th>
                                                     <th>Pickup Date</th>
+                                                     <th>Created User</th>
+                                                    <th>Registered or Guest User</th>
                                                     <th>Actions</th>
                                                 </tr>
                                             </thead>

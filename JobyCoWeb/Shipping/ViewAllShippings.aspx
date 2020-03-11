@@ -524,7 +524,7 @@
                             {
                                 data: "ArrivalDate",
                                 render: function (jsonArrivalDate) {
-                                    debugger;
+                                    
                                     var ArrivalDate = getFormattedDateUK(jsonArrivalDate);
                                     if (ArrivalDate == "01/01/2000") {
                                         return "";
@@ -669,7 +669,7 @@
                             {
                                 data: "ArrivalDate",
                                 render: function (jsonArrivalDate) {
-                                    debugger;
+                                    
 
                                     var ArrivalDate = getFormattedDateUK(jsonArrivalDate);
                                     if (ArrivalDate == "01/01/2000") {

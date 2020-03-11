@@ -38,7 +38,7 @@
 <script>
     function InitializeMap()
         {
-                debugger;
+                
 
                 var PLat = $("#<%=hfPickupLatitude.ClientID%>").val();
                 var Plong = $("#<%=hfPickupLongitude.ClientID%>").val();

@@ -133,7 +133,7 @@
 
                 google.maps.event.addListener( placesCollection, 'place_changed', function ()
                 {
-                    debugger;
+                    
                     var placeCollection = placesCollection.getPlace();
                     var addressCollection = placeCollection.formatted_address;
                     var latitudeCollection = placeCollection.geometry.location.lat();

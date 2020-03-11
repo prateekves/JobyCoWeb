@@ -151,7 +151,7 @@
                     $('#StatusDetails').text(jData[0]['StatusDetails']);
                     $("#PCustomerTitle").text(jData[0]['PickupCustomerTitle']);
                     $("#DCustomerTitle").text(jData[0]['DeliveryCustomerTitle']);
-                    debugger;
+                    
                     if (jData[0]['IsPicked'] == "1") {
                         $('#btnEditBooking').css('display', 'none');
                     }
@@ -549,7 +549,7 @@
                     len = jdata.length;
                     //alert(len);
                     //alert(JSON.stringify(jdata));
-                    debugger;
+                    
                     var newRowContent = "";
                     for (var i = 0; i < len; i++) {
                         newRowContent += "<td style='padding: 4px 4px 4px 4px;'><img src='" + jdata[i]['ImageUrl'] + "' title='" + jdata[i]['PickupItem'] + "' alt='#' height='50' width='50'/></td>";
@@ -850,7 +850,7 @@
                     len = jdata.length;
                     //alert(len);
                     //alert(JSON.stringify(jdata));
-                    debugger;
+                    
                     var newRowContent = "";
                     for (var i = 0; i < len; i++) {
                         newRowContent += "<td style='padding: 4px 4px 4px 4px;'><img src='" + jdata[i]['ImageUrl'] + "' title='" + jdata[i]['PickupItem'] + "' alt='#' height='50' width='50'/></td>";
@@ -1158,7 +1158,7 @@
 
         function cancelBooking()
         {
-            debugger;
+            
             var BookingId = $( '#<%=spHeaderBookingId.ClientID%>' ).text().trim().replace('#', '');
             var OrderStatus = $('#<%=hfOrderStatus.ClientID%>').val().trim();
             var taReason = $('#taReason').val().trim();

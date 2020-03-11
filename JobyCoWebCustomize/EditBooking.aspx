@@ -183,7 +183,7 @@
     <script>
         function getMyTableTotal()
         {
-            //debugger;
+            //
             var vMyTable_PredefinedEstimatedValue_String = "";
             var vMyTable_PredefinedEstimatedValue_Float = 0.0;
 
@@ -245,7 +245,7 @@
                         var newRowContentConfirmation = "";
                         var ChargesType = "";
                         for (var i = 0; i < len; i++) {
-                            //debugger;
+                            //
                             var TaxAmount = parseFloat(jdata[i]["TaxAmount"]);
                             var IsPercent = jdata[i]["IsPercent"];
                             ChargesType = jdata[i]["RadioChargesType"].toString();
@@ -1559,7 +1559,7 @@
                 var vConfirmItemsIsFragile = "";
                 var vConfirmItemsEstimatedValue = "";
                 var vConfirmItemsPredefinedEstimatedValue = "";
-                //debugger;
+                //
                 vTableRowLast += "<tr>";
                 vTableRowLast += "<td id='tdPickupCategory" + counter.toString() + "'>" + vConfirmItemsPickupCategory + "</td>";
                 vTableRowLast += "<td id='tdPickupItem" + counter.toString() + "'>" + vConfirmItemsPickupItem + "</td>";
@@ -3514,7 +3514,7 @@
 
         //New Function Added
         function editOrder() {
-            debugger;
+            
             ///alert('hiiii');
             var BookingId = $("#<%=hfEditBookingId.ClientID%>").val().trim();
             var CustomerId = $("#<%=hfEditCustomerId.ClientID%>").val().trim();

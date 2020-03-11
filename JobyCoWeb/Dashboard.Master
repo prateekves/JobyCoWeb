@@ -49,140 +49,10 @@
     <!-- Placed at the end of the document so the pages load faster-->    
     <script src="/js/jquery-2.2.4.min.js"></script> 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <%--<script type="text/javascript">
-        function setCookie(cname, cvalue, exdays) {
-            var d = new Date();
-            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-            var expires = "expires=" + d.toGMTString();
-            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-        }
 
-        function getCookie(cname) {
-            debugger;
-            var name = cname + "=";
-            var decodedCookie = decodeURIComponent(document.cookie);
-            var ca = decodedCookie.split(';');
-            for (var i = 0; i < ca.length; i++) {
-                var c = ca[i];
-                while (c.charAt(0) == ' ') {
-                    c = c.substring(1);
-                }
-                if (c.indexOf(name) == 0) {
-                    //alert(c.substring(name.length, c.length));
-                    return c.substring(name.length, c.length);
-                }
-            }
-            return "";
-        }
-
-        function checkCookie() {
-            var user = getCookie("username");
-            if (user != "") {
-                alert("Welcome again " + user);
-            } else {
-                user = prompt("Please enter your name:", "");
-                if (user != "" && user != null) {
-                    setCookie("username", user, 30);
-                }
-            }
-        }
-
-
-        if (typeof google === 'object' && typeof google.maps === 'object') {
-            InitializeMap();
-        } else {
-            $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyA079i9v8OTWYxstBB53I-nydb8zt1c_tk&libraries=places&callback=InitializeMap', function () {
-                //InitializeMap();
-                initializeGoogleLocation();
-                showPosition();
-            });
-        }
-
-        var geocoder;
-        function initializeGoogleLocation() {
-            geocoder = new google.maps.Geocoder();
-        }
-        function codeLatLng(lat, lng) {
-            debugger;
-            var latlng = new google.maps.LatLng(lat, lng);
-            geocoder.geocode({ 'latLng': latlng }, function (results, status) {
-                if (status == google.maps.GeocoderStatus.OK) {
-                    console.log(results)
-                    if (results[1]) {
-                        //formatted address
-                        debugger;
-                        //alert(results[0].formatted_address);
-                        //setCookie('setlocation', results[0].formatted_address, 1); 
-                        //find country name
-                        for (var i = 0; i < results[0].address_components.length; i++) {
-                            for (var b = 0; b < results[0].address_components[i].types.length; b++) {
-
-                                //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
-                                //if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
-                                //    //this is the object you are looking for
-                                //    city = results[0].address_components[i];
-                                //    //break;
-                                //}
-                                //For Country
-                                if (results[0].address_components[i].types[b] == "country") {
-                                    //this is the object you are looking for
-                                    setCookie('setlocation', results[0].address_components[i].long_name, 1);
-                                    break;
-                                }
-
-                            }
-                        }
-                        //city data
-                        //alert(city.short_name + " " + city.long_name)
-
-
-                    } else {
-                        alert("No results found");
-                    }
-                } else {
-                    alert("Geocoder failed due to: " + status);
-                }
-            });
-        }
-
-
-    // Set up global variable
-     var PositionResult;
+    <script type="text/javascript" src="/js/bootstrap3-typeahead.min.js"></script>  
     
-    function showPosition(){
-        // Store the element where the page displays the result
-        PositionResult = document.getElementById("PositionResult");
-        
-        // If geolocation is available, try to get the visitor's position
-        if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-            PositionResult.innerHTML = "Getting the position information...";
-        } else{
-            alert("Sorry, your browser does not support HTML5 geolocation.");
-        }
-    };
-    
-    // Define callback function for successful attempt
-    function successCallback(position) {
-        debugger;
-        PositionResult.innerHTML = "Your current position is (" + "Latitude: " + position.coords.latitude + ", " + "Longitude: " + position.coords.longitude + ")";
-        codeLatLng(position.coords.latitude, position.coords.longitude);
-    }
-    
-    // Define callback function for failed attempt
-    function errorCallback(error){
-        if(error.code == 1){
-            PositionResult.innerHTML = "You've decided not to share your position, but it's OK. We won't ask you again.";
-        } else if(error.code == 2){
-            PositionResult.innerHTML = "The network is down or the positioning service can't be reached.";
-        } else if(error.code == 3){
-            PositionResult.innerHTML = "The attempt timed out before it could get the location data.";
-        } else{
-            PositionResult.innerHTML = "Geolocation failed due to unknown error.";
-        }
-    }
-</script>--%>
-    <script language="JavaScript">
+    <script type="text/javascript">
   /**
     * Disable right-click of mouse, F12 key, and save key combinations on page
     * By Arthur Gareginyan (arthurgareginyan@gmail.com)
@@ -228,7 +98,7 @@
 
 </script>
 
-    <script>
+  <%--  <script>
 
         $.ajax({
             url: "",
@@ -239,17 +109,14 @@
                 $(this).html(s);
             }
         });
-    </script>
+    </script>--%>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
 </head>
 <body class="drawer drawer--left drawer-close darkBG">
     
-    <%--<div id="PositionResult">
-        <!--Position information will be inserted here-->
-    </div>
-   <button type="button" onclick="showPosition();">Show Position</button>--%>
+   
 
     <div id="loaderDiv" style="display: none;">
             <p id="loaderQuotationText" class="loadingMSG">
@@ -265,8 +132,7 @@
             <p id="successBookingText" class="loadingMSG">
                <i class="fa fa-check" aria-hidden="true"></i> 
                 We confirmed your booking and sent details to your email
-                <%--<a href="/Dashboard.aspx" style="text-decoration: none;" id="anchorHomeB">
-                    Back to Dashboard</a>--%>
+              
                 <a href="/Booking/ViewAllBookings.aspx" style="text-decoration: none;" id="anchorHomeB">
                     Back to All Bookings</a>
             </p>
@@ -293,13 +159,12 @@
             Please wait while we confirm your subscription
         </p>
         <p id="successText" class="loadingMSG">
-            <%--<i class="fa fa-check" aria-hidden="true"></i>--%>
+           
             <i class="fa fa-spinner fa-spin fa-2x"></i>
             Loading... 
         </p>
 
-        <%--<i style="font-size:48px;" class="fa fa-spinner fa-spin fa-2x fa-fw load-icon loadingGF" id="userImage"></i>
-        <span class="sr-only">Loading...</span>--%>
+        
     </div>
     <div>
          <header class="header affix" role="banner">
@@ -316,121 +181,7 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                  <%--<ul class="nav navbar-nav">
-                    <li class="dropdown" id="Booking" style="display: none;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Booking <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li id="RequestAQuote" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Booking/AddQuoting.aspx">Request A Quote</a></li>
-                            <li id="MakeABooking" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Booking/AddBooking.aspx">Make A Booking</a></li>
-                            <li id="AssignBookingToDriver" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Booking/AssignBookingToDriver.aspx">Assign Booking To Driver</a></li>
-                            <li id="ViewAllBookings" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Booking/ViewAllBookings.aspx">View All Bookings</a></li>
-                            <li id="ViewAllQuotations" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Booking/ViewAllQuotations.aspx">View All Quotations</a></li>
-                            <li id="ViewDriverJob" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Booking/PrintDriverJob.aspx">View Driver Job</a></li>
-                            <li id="ViewItemwiseBookings" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Booking/ViewItemwiseBookings.aspx">View Itemwise Bookings</a></li>
-                      </ul>
-                    </li>
-                      <li class="dropdown" id="Operation" style="display: none;">
-                        <a class="drawer-menu-item" data-target="#" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Operation <span class="drawer-caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                        <li id="CheckInAPackage" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Operation/CheckIn.aspx">Check In A Package</a></li>
-                        <li id="CheckOutAPackage" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Operation/CheckOut.aspx">Check Out a Package</a></li>
-                        <li id="IssueInvoice" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Operation/IssueInvoice.aspx">Issue Invoice</a></li>
-                        </ul>
-                    </li>
-                      <li class="dropdown" id="Accounts" style="display: none;">
-                        <a class="drawer-menu-item" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Accounts <span class="drawer-caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                        <li id="ViewInvoices" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Accounting/ViewInvoices.aspx">View Invoices</a></li>
-                        <li id="ProcessInvoices" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Accounting/ProcessInvoices.aspx">Process Invoices</a></li>
-                        <li id="DriverPayment" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Accounting/DriverPayment.aspx">Driver Payment</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shipping <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li id="AddContainer" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Shipping/AddContainer.aspx">Add Container</a></li>
-                        <li id="AddShipping" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Shipping/AddShipping.aspx">Add Shipping</a></li>
-                        <li id="ViewAllShippings" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Shipping/ViewAllShippings.aspx">View All Shippings</a></li>
-                        <li id="UpdateStatus" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Shipping/UpdateStatus.aspx">Enquiry</a></li>
-                        <li id="AssignItemToShipping" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Shipping/AssignItemToShipping.aspx">Assign Item To Shipping</a></li>
-                        <li id="TrackShipment" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Shipping/TrackShipment.aspx">Track Shipment</a></li>
-                      </ul>
-                    </li>
-                      <li class="dropdown" id="Reports" style="display: none;">
-                         <a class="drawer-menu-item" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
-                          Reports <span class="drawer-caret"></span>
-                          </a>
-                          <ul class="dropdown-menu">
-                             <li id="CSAReport" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Reports/CSA_Report.aspx">CSA Report</a></li>
-                             <li id="CustomerOrders" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Reports/CustomerOrders.aspx">Customer Orders</a></li>
-                             <li id="CRMAuditReport" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Reports/CRM_AuditReport.aspx">CRM Audit Report</a></li>
-                           </ul>
-                       </li>
-                    <li class="dropdown" id="Customers" style="display: none;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Customers <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li id="AddCustomer" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Customers/AddCustomer.aspx">Add Customer</a></li>
-                        <li id="ViewAllCustomers" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Customers/ViewAllCustomers.aspx">View All Customers</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="Drivers" style="display: none;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Drivers <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li id="AddADriver" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Drivers/AddDriver.aspx">Add A Driver</a></li>
-                        <li id="ViewAllDrivers" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Drivers/ViewAllDrivers.aspx">View All Drivers</a></li>
-                       </ul>
-                    </li>
-                    <li class="dropdown" id="Warehouse" style="display: none;">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Warehouse <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li id="NewWarehouse" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Warehouse/NewWarehouse.aspx">New Warehouse</a></li>
-                        <li id="ViewAllWarehouses" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Warehouse/ViewAllWarehouses.aspx">View All Warehouses</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown" id="Location" style="display: none;">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Location <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li id="NewLocation" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Location/NewLocation.aspx">New Location</a></li>
-                        <li id="ViewAllLocations" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Location/ViewAllLocations.aspx">View All Locations</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown" id="Zone" style="display: none;">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Zone <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li id="NewZone" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Zone/NewZone.aspx">New Zone</a></li>
-                        <li id="ViewAllZones" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Zone/ViewAllZones.aspx">View All Zones</a></li>
-                      </ul>
-                    </li>
-                    <li class="dropdown" id="CustomerCare" style="display: none;">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Customer Care <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/CustomerCare/AddEscalationLevel.aspx">Add A New Ticket</a></li>
-                            <li><a href="/CustomerCare/ViewAllEscalationLevels.aspx">View All Tickets</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown" id="User" style="display: none;">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li id="NewUser" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Users/NewUser.aspx">New User</a></li>
-                        <li id="ViewAllUsers" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Users/ViewAllUsers.aspx">View All Users</a></li>
-                        <li id="AuthenticateUsers" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Users/AuthenticateUsers.aspx">Authenticate Users</a></li>
-                      </ul>
-                    </li>
-
-                    <li class="dropdown" id="AccessRights" style="display: none;">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Access Rights <span class="caret"></span></a>
-                      <ul class="dropdown-menu">
-                        <li id="ChangePayPalEmail" style="display: none;"><a class="drawer-dropdown-menu-item" href="/SuperAdmin/PayPalEmailAddress.aspx">Change PayPal Email</a></li>
-                        <li id="MenuCreator" style="display: none;"><a class="drawer-dropdown-menu-item" href="/SuperAdmin/MenuCreator.aspx">Menu Creator</a></li>
-                        <li id="RoleManagement" style="display: none;"><a class="drawer-dropdown-menu-item" href="/SuperAdmin/RoleAccess.aspx">Role Management</a></li>
-                        <li id="UserRoleAccess" style="display: none;"><a class="drawer-dropdown-menu-item" href="/SuperAdmin/UserAccess.aspx">User Role Access</a></li>
-                      </ul>
-                    </li>
-                  </ul>--%>
+                 
                     <ul class="nav navbar-nav navbar-right acntLog">
                         <li class="dropdown">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -458,13 +209,6 @@
                 </div>
               </div>
             </nav>
-
-
-
-
-
-
-
 
             <button type="button" class="drawer-toggle drawer-hamburger flash">
               <span class="sr-only">toggle navigation</span>
@@ -565,15 +309,7 @@
                         </ul>
                     </li>
 
-                    <%--<li class="drawer-dropdown" id="Customers" style="display: block;">
-                      <a class="drawer-menu-item" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Customers <span class="drawer-caret"></span>
-                      </a>
-                      <ul class="drawer-dropdown-menu">
-                        <li id="AddCustomer" style="display: block;"><a class="drawer-dropdown-menu-item" href="/Customers/AddCustomer.aspx">Add Customer</a></li>
-                        <li id="ViewAllCustomers" style="display: block;"><a class="drawer-dropdown-menu-item" href="/Customers/ViewAllCustomers.aspx">View All Customers</a></li>
-                      </ul>
-                    </li>--%>
+                  
                     <li class="drawer-dropdown" id="Drivers" style="display: none;">
                       <a class="drawer-menu-item" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
                         Drivers <span class="drawer-caret"></span>
@@ -583,33 +319,7 @@
                         <li id="ViewAllDrivers" style="display: block;"><a class="drawer-dropdown-menu-item" href="/Drivers/ViewAllDrivers.aspx">View All Drivers</a></li>
                       </ul>
                     </li>
-                    <%--<li class="drawer-dropdown" id="Warehouse" style="display: none;">
-                      <a class="drawer-menu-item" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Warehouse <span class="drawer-caret"></span>
-                      </a>
-                      <ul class="drawer-dropdown-menu">
-                        <li id="NewWarehouse" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Warehouse/NewWarehouse.aspx">New Warehouse</a></li>
-                        <li id="ViewAllWarehouses" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Warehouse/ViewAllWarehouses.aspx">View All Warehouses</a></li>
-                      </ul>
-                    </li>
-                    <li class="drawer-dropdown" id="Location" style="display: none;">
-                      <a class="drawer-menu-item" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Location <span class="drawer-caret"></span>
-                      </a>
-                      <ul class="drawer-dropdown-menu">
-                        <li id="NewLocation" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Location/NewLocation.aspx">New Location</a></li>
-                        <li id="ViewAllLocations" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Location/ViewAllLocations.aspx">View All Locations</a></li>
-                      </ul>
-                    </li>
-                    <li class="drawer-dropdown" id="Zone" style="display: none;">
-                      <a class="drawer-menu-item" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Zone <span class="drawer-caret"></span>
-                      </a>
-                      <ul class="drawer-dropdown-menu">
-                        <li id="NewZone" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Zone/NewZone.aspx">New Zone</a></li>
-                        <li id="ViewAllZones" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Zone/ViewAllZones.aspx">View All Zones</a></li>
-                      </ul>
-                    </li>--%>
+                   
 
                     <li class="drawer-dropdown" id="Taxation" style="display: none;">
                         <a class="drawer-menu-item" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -669,7 +379,7 @@
                       <ul class="drawer-dropdown-menu">
                         <li id="NewUser" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Users/NewUser.aspx">New User</a></li>
                         <li id="ViewAllUsers" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Users/ViewAllUsers.aspx">View All Users</a></li>
-                        <%--<li id="AuthenticateUsers" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Users/AuthenticateUsers.aspx">Authenticate Users</a></li>--%>
+                      
                       </ul>
                     </li>
 
@@ -679,11 +389,11 @@
                       </a>
                       <ul class="drawer-dropdown-menu">
                         <li id="ChangePayPalEmail" style="display: none;"><a class="drawer-dropdown-menu-item" href="/SuperAdmin/PayPalEmailAddress.aspx">Change PayPal Email</a></li>
-                        <%--<li id="Charges" style="display: none;"><a class="drawer-dropdown-menu-item" href="/Taxation/NewTaxation.aspx">Charges</a></li>--%>
+                        
                           <li id="Charges" style="display: none;"><a class="drawer-dropdown-menu-item" href="/SuperAdmin/Charges.aspx">Charges</a></li>
                           
                         <li id="MenuCreator" style="display: none;"><a class="drawer-dropdown-menu-item" href="/SuperAdmin/MenuCreator.aspx">Menu Creator</a></li>
-                        <%--<li id="RoleManagement" style="display: none;"><a class="drawer-dropdown-menu-item" href="/SuperAdmin/RoleAccess.aspx">Role Management</a></li>--%>
+                         
                         <li id="UserRoleAccess" style="display: none;"><a class="drawer-dropdown-menu-item" href="/SuperAdmin/UserAccess.aspx">User Role Access</a></li>
                       </ul>
                     </li>
@@ -694,36 +404,7 @@
    	<!-- content -->
     <main role="main">
         <section class="item">
-            <%--<section class="topBar affix">
-                <div class="col-md-6">
-                    <a class="navbar-brand" href="/Dashboard.aspx"><img src="/images/logo.svg" alt="" class="img-responsive" /></a>
-                </div>
-                <div class="col-md-6">
-                    <ul class="acntLog">
-                        <li class="dropdown">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                              <span class="glyphicon glyphicon-user pull-right userID"></span></a>
-
-                          <ul class="dropdown-menu">
-                            <li><a href="#">Account Settings <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">User stats <span class="glyphicon glyphicon-stats pull-right"></span></a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Messages <span class="badge pull-right"></span></a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">Favourites Snippets <span class="glyphicon glyphicon-heart pull-right"></span></a></li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="#">
-                                    <button type="button" id="lnkLogout" runat="server" onserverclick="lnkLogout_Click">Sign Out</button>
-                                    <span class="glyphicon glyphicon-log-out pull-right"></span>
-                                </a>
-                            </li>
-                          </ul>
-                        </li>
-                      </ul>
-                </div>
-            </section>--%>
+     
             
             <section class="innerNav-sec">
                 <div class="container">
@@ -733,14 +414,7 @@
                         </asp:ContentPlaceHolder>
                         <script>
                                 $(document).ready(function(){
-                                    //$('.quick').click(function () {
-                                    //    var hidden = $('.right_icons');
-                                    //if (hidden.hasClass('visible')){
-                                    //    hidden.animate({"right":"-163px"}, "slow").removeClass('visible');
-                                    //} else {
-                                    //    hidden.animate({"right":"0px"}, "slow").addClass('visible');
-                                    //}
-                                    //});
+                                     
                                     $('body').click(function (e) {
                                         var hidden = $('.right_icons');
                                         if ($(e.target).closest(".right_icons").length > 0) {
@@ -772,17 +446,7 @@
                 </div>              
             </section>
             
-            <%--<section class="innerNav-sec">
-                <div class="col-md-12 col-sm-12">
-                    <div class="deliOpt">
-                    	<div class="row">
-                            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
-        
-                            </asp:ContentPlaceHolder>
-						</div>
-                    </div>
-                </div>
-            </section>--%>          
+                 
         </section>
     </main>
     </div>
@@ -795,9 +459,7 @@
     <script src="/js/intlTelInput.min.js"></script>
     <script src="/js/iscroll.js"></script>
     <script src="/js/custom.js"></script>
-
     <script src="/Scripts/allfunctions.js"></script>
-
     <link href="/Styles/jquery-confirm.min.css" rel="stylesheet" />
     <script src="/Scripts/jquery-confirm.min.js"></script>
     

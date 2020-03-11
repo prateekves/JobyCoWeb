@@ -232,7 +232,7 @@
             var IsExists = 1;
             //Check Duplicate Image
             $('.file_viwer_sec img').each(function () {
-                debugger;
+                
                 var ImageTitle = $(this).attr('title');
                 if (ImageTitle == ImageName) {
                     //alert('Image already added');
@@ -311,7 +311,7 @@
                     var jdata = JSON.parse(result.d);
                     len = jdata.length;
                     //alert(len);
-                    debugger;
+                    
                     //alert(JSON.stringify(jdata));
                     for (var i = 0; i < len; i++) {
                         var structure = $('<div class="mlty_ple_upload"> <i class="fa fa-times-circle remove_images_single" onclick="return deleteImage(this, \'' + jdata[i]['ImagePickupId'] + '\',\'' + jdata[i]['ImageName'] + '\', \'' + jdata[i]['ImageUrl'] + '\',' + num + ', ' + i + ');" aria-hidden="true"></i> <div class="form-group"><label class="add_img_file_aa"><i class="fa fa-upload" aria-hidden="true"></i>Upload File<input type="file" id="FileUpload' + num + '' + i + '" disabled="disabled" size="60" onchange="return displayImage(event, ' + num + ', ' + i + ');" ></label></div><div class="file_viwer_sec"> <img id="ViewImage' + num + '' + i + '" src="' + jdata[i]["ImageUrl"] + '" title="' + jdata[i]["ImageName"] + '" /> </div><div class="apnd_mlty_ple"> <button type="button" class="btn g" style="visibility:hidden;"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add More </button> </div></div>');
@@ -348,7 +348,7 @@
         };
 
         function closeNearestImage(x, i, row) {
-            debugger;
+            
             //$(x).closest("li").css('display', 'none');
             $(x).closest("li").remove();
 
@@ -399,7 +399,7 @@
         function deleteImage(x, ImagePickupId, ImageName, ImageUrl, x, y) {
             //alert(ImagePickupId+' '+ImageName+' ' + ImageUrl);
             // Create a reference to the file to delete 
-            debugger;
+            
             swal({
                 title: "Are you sure?",
                 text: "You want to delete this row! The image will be deleted if you delete this row!",
@@ -466,7 +466,7 @@
 
         function getMyTableTotal()
         {
-            //debugger;
+            //
             var vMyTable_PredefinedEstimatedValue_String = "";
             var vMyTable_PredefinedEstimatedValue_Float = 0.0;
 
@@ -529,7 +529,7 @@
                         var newRowContentConfirmation = "";
                         var ChargesType = "";
                         for (var i = 0; i < len; i++) {
-                            //debugger;
+                            //
                             var TaxAmount = parseFloat(jdata[i]["TaxAmount"]);
                             var IsPercent = jdata[i]["IsPercent"];
                             ChargesType = jdata[i]["RadioChargesType"].toString();
@@ -1346,7 +1346,7 @@
 
             //$('#' + PickupItemId).find("option:selected").text(PickupItemValue);
             $('#' + PickupItemId + ' option').each(function () {
-                debugger;
+                
                 if ($(this).text() == PickupItemValue) {
                     $(this).attr('selected', 'selected');
                 }
@@ -1931,7 +1931,7 @@
                 var vConfirmItemsIsFragile = "";
                 var vConfirmItemsEstimatedValue = "";
                 var vConfirmItemsPredefinedEstimatedValue = "";
-                //debugger;
+                //
                 vTableRowLast += "<tr>";
                 vTableRowLast += "<td id='tdPickupCategory" + counter.toString() + "'>" + vConfirmItemsPickupCategory + "</td>";
                 vTableRowLast += "<td id='tdPickupItem" + counter.toString() + "'>" + vConfirmItemsPickupItem + "</td>";
@@ -2005,7 +2005,7 @@
         }
 
         //function CopyFirstRow(rowCount){
-        //    debugger;
+        //    
         //    var vMyTable_PickupCategory = "";
         //    var vMyTable_PickupCategoryValue = "";
         //    var vMyTable_PickupItem = "";
@@ -2018,7 +2018,7 @@
         //    var vMyTable_PredefinedEstimatedValue = "";
 
         //    $('#myTable >tbody >tr').each(function (index, val) {
-        //        debugger;
+        //        
 
         //        if (rowCount == val.rowIndex) {
         //            //alert(rowCount + '  ' + val.rowIndex);
@@ -2045,7 +2045,7 @@
         //            //alert(vMyTable_PickupCategory);
 
         //            $('#myTable >tbody >tr').each(function (index, val) {
-        //                debugger;
+        //                
         //                if (rowCount < val.rowIndex) {
         //                    var vMyTable_PickupCategoryId = $(this).closest("tr").find('select:eq(0)').attr("id");
         //                    $('#' + vMyTable_PickupCategoryId).val(vMyTable_PickupCategoryValue);
@@ -2071,7 +2071,7 @@
 
         //}
         function CopyFirstRow(rowCount) {
-            debugger;
+            
             var vMyTable_PickupCategory = "";
             var vMyTable_PickupCategoryValue = "";
 
@@ -2087,7 +2087,7 @@
             var vMyTable_PredefinedEstimatedValue = "";
 
             $('#myTable >tbody >tr').each(function (index, val) {
-                debugger;
+                
 
                 if (rowCount == val.rowIndex) {
                     //alert(rowCount + '  ' + val.rowIndex);
@@ -2120,7 +2120,7 @@
                     //alert(vMyTable_PickupCategory);
 
                     $('#myTable >tbody >tr').each(function (index, val) {
-                        debugger;
+                        
                         if (rowCount < val.rowIndex) {
                             var vMyTable_PickupCategoryId = $(this).closest("tr").find('select:eq(0)').attr("id");
                             $('#' + vMyTable_PickupCategoryId).val(vMyTable_PickupCategoryValue);
@@ -2504,7 +2504,7 @@
 
             //==========Check Category In Booking Table
             $('#myTable >tbody >tr').each(function (index, val) {
-                debugger;
+                
                 if (index > 0) {
                     var vMyTable_PickupCategoryId = $(this).closest("tr").find('select:eq(0)').attr("id");
                     var vMyTable_PickupCategory = $(this).closest("tr").find('select:eq(0)').find("option:selected").text().trim();
@@ -3060,7 +3060,7 @@
 
         function uploadImageFile()
             {
-                debugger;
+                
                 var files = "";
                 var OuterLoopCount = 1;
                 var BookingId = $( "#<%=hfEditBookingId.ClientID%>" ).val().trim();
@@ -3068,7 +3068,7 @@
 
                 $( "#tblConfirmItems >tbody >tr" ).each( function ()
                     {
-                        debugger;
+                        
                         var InnerLoopCount = 0;
                         InnerLoopCount = $('#apnd_div' + OuterLoopCount).find('.mlty_ple_upload').length;
                         //alert('OuterLoopCount= ' + OuterLoopCount + ' InnerLoopCount= ' + InnerLoopCount);
@@ -3089,7 +3089,7 @@
                                 var ImageName = BookingId + '-' + files[0].name;;
                                 var ImageUrl = 'https://firebasestorage.googleapis.com/v0/b/jobycoimages.appspot.com/o/images%2F' + BookingId + '-' + files[0].name + '?alt=media';
                                 
-                                debugger;
+                                
 
                                 //Save in the Customer Portal
                                 //New Code for Image Insert
@@ -3553,7 +3553,7 @@
 
         function sendEmailAfterConfirmation()
         {
-            debugger;
+            
             
             var hfChanged = $( '#<%=hfChanged.ClientID%>' ).val().trim();
             
@@ -4146,7 +4146,7 @@
             }--%>
 
         function proceedToPayment() {
-            debugger;
+            
             var sNowTotal = $("#<%=spTotal.ClientID%>").text().trim();
             //$("#<%=spCurrentBill.ClientID%>").text(sNowTotal);
             var fNowTotal = parseFloat(sNowTotal).toFixed(2);
@@ -4199,7 +4199,7 @@
 
                 //Booking Mail
                 //sendBookingByEmail(EmailID, jQueryDataTableContent);
-                debugger;
+                
                 var BookingId = $("#<%=hfEditBookingId.ClientID%>").val().trim();
                         //setTimeout(function () {
                         //    location.href = '/ProceedToPayment.aspx?BookingId=' + BookingId;
@@ -4405,7 +4405,7 @@
 
         //New Function Added
         function editOrder() {
-            debugger;
+            
             //alert('hiiii');
             var BookingId = $("#<%=hfEditBookingId.ClientID%>").val().trim();
             var CustomerId = $("#<%=hfEditCustomerId.ClientID%>").val().trim();
@@ -4624,7 +4624,7 @@
                                     var jdata = JSON.parse(result1.d);
                                     len = jdata.length;
                                     //alert(JSON.stringify(jdata));
-                                    debugger;
+                                    
                                     
 
                                     for (var i = 0; i < len; i++) {

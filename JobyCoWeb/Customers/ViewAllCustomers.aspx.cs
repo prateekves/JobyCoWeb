@@ -53,14 +53,14 @@ namespace JobyCoWeb.Customers
 
                 if (ObjLogin == null)
                 {
-                    Response.Redirect("/Login.aspx");
+                    Server.Transfer("/Login.aspx");
                 }
                 else
                 {
                     string sessionid = ObjLogin.SESSIONID;
                     if (sessionid == "")
                     {
-                        Response.Redirect("/Login.aspx");
+                        Server.Transfer("/Login.aspx");
                     }
                     else
                     {
@@ -95,40 +95,54 @@ namespace JobyCoWeb.Customers
             return GetDropDownValues(7, 10);
         }
 
+        /// <summary>
+        /// This webmethod is for clientside paging for jquery datatable
+        /// we need to pass draw , start and length parameter from page to webmethod in order to get the length of data
+        /// </summary>
+        /// <param name="dtParameters"></param>
+        /// <returns></returns>
         [WebMethod]
-        public static string GetAllCustomers()
+        public static DataTableResponse GetAllCustomers(DataTableParameter dtParameters)
         {
-            DataTable dtCustomer = objDB.GetAllCustomers();
-            List<EntityLayer.clsCustomers> lstCustomer = new List<EntityLayer.clsCustomers>();
-
-            foreach (DataRow drCustomer in dtCustomer.Rows)
+            string searchValue = string.Empty;
+            if (!string.IsNullOrEmpty(dtParameters.columns[0].Search.value))
             {
-                EntityLayer.clsCustomers objCustomer = new EntityLayer.clsCustomers();
-
-                objCustomer.CustomerId = drCustomer["CustomerId"].ToString();
-                objCustomer.EmailID = drCustomer["EmailID"].ToString();
-                objCustomer.CustomerName = drCustomer["CustomerName"].ToString();
-                DateTime dt;
-                if (DateTime.TryParse(drCustomer["DOB"].ToString(), out dt))
+                foreach (var item in dtParameters.columns.ToList())
                 {
-                    objCustomer.DOB = Convert.ToDateTime(drCustomer["DOB"].ToString());
-                }
-                else
-                {
-                    objCustomer.DOB = DateTime.MinValue;
+                    if (!string.IsNullOrEmpty(item.Search.value))
+                    {
+                        searchValue = item.Search.value;
+                        break;
+                    }
                 }
 
-                objCustomer.sDOB = objCustomer.DOB.Date.ToShortDateString();
-                objCustomer.Address = drCustomer["Address"].ToString();
-                objCustomer.Mobile = drCustomer["Mobile"].ToString();
-
-                lstCustomer.Add(objCustomer);
             }
 
-            var js = new JavaScriptSerializer();
-            js.MaxJsonLength = Int32.MaxValue;
-            return js.Serialize(lstCustomer);
+            // get the requested data.
+            DataTable dtCustomer = objDB.GetAllCustomers();
+            DataTableResponse res = objDB.GetAllCustomersServerSide(dtParameters, searchValue);
+            // The following values must be set by the data access layer so it knows how to do the paging.
+            //if (!string.IsNullOrEmpty(searchValue))
+            //{
+            //    //res.recordsTotal = dtCustomer.Rows.Count;
+            //    res.recordsTotal = res.recordsFiltered;
+            //}
+            //else
+            //{
+            //    res.recordsTotal = dtCustomer.Rows.Count;
+            //}
+            //res.recordsTotal = dtCustomer.Rows.Count;
+            //res.recordsFiltered = dtParameters.length;
+
+            //res.data = res.data; //the data returned by the database and put in a List<dtData>
+
+            // Draw is what keeps the requests in sync particularly when another 
+            // one is fired off will still waiting for the first response.
+            res.draw = dtParameters.draw;
+            return res;
         }
+
+
 
         [WebMethod]
         public static void UpdateCustomerDetails
@@ -209,7 +223,7 @@ namespace JobyCoWeb.Customers
         {
             return objOP.RetrieveField2FromField1("Title", "Customers", "CustomerId", CustomerId);
         }
-        
+
 
         [WebMethod]
         public static string GetCustomerLandlineFromCustomerId(string CustomerId)

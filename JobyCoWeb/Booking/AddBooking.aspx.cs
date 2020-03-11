@@ -50,28 +50,28 @@ namespace JobyCoWeb.Booking
 
                 #region BindDropdown
 
-                DataTable dtCustomers = objOP.GetCustomerIdNames("Customers");
-                //objCM.FillDropDown(ddlCustomers, "Customer", dtCustomers);
-                //Modified to get the Id field from dropdown
-                ddlCustomers.DataSource = dtCustomers;
-                ddlCustomers.DataTextField = "CustomerName";
-                ddlCustomers.DataValueField = "CustomerId";
-                ddlCustomers.DataBind();
-                ddlCustomers.Items[0].Text = "Select Customer";
-                ddlCustomers.Items[0].Value = "Select Customer";
-                ddlCustomers.Items[0].Selected = true;
-                try
-                {
-                    string sCustomerId = Request.QueryString["CustomerId"].Trim().Replace("+", " ");
-                    if (sCustomerId != "")
-                    {
-                        ddlCustomers.SelectedValue = sCustomerId;
-                    }
-                }
-                catch
-                {
+                //DataTable dtCustomers = objOP.GetCustomerIdNames("Customers");
+                ////objCM.FillDropDown(ddlCustomers, "Customer", dtCustomers);
+                ////Modified to get the Id field from dropdown
+                //ddlCustomers.DataSource = dtCustomers;
+                //ddlCustomers.DataTextField = "CustomerName";
+                //ddlCustomers.DataValueField = "CustomerId";
+                //ddlCustomers.DataBind();
+                //ddlCustomers.Items[0].Text = "Select Customer";
+                //ddlCustomers.Items[0].Value = "Select Customer";
+                //ddlCustomers.Items[0].Selected = true;
+                //try
+                //{
+                //    string sCustomerId = Request.QueryString["CustomerId"].Trim().Replace("+", " ");
+                //    if (sCustomerId != "")
+                //    {
+                //        ddlCustomers.SelectedValue = sCustomerId;
+                //    }
+                //}
+                //catch
+                //{
 
-                }
+                //}
 
                 #endregion
 
@@ -134,6 +134,29 @@ namespace JobyCoWeb.Booking
             return lstItemValues.ToArray();
         }
 
+        [WebMethod]
+        public static string[] GetCustomerData(string SearchParam)
+        {
+            DataTable dtItemValues = objDB.GetCustomerAutoComplete(SearchParam);
+            List<CustomerViewModel> empList = new List<CustomerViewModel>();
+            List<string> custList = new List<string>();
+            empList = dtItemValues.AsEnumerable()
+                                  .Select(x => new CustomerViewModel()
+                                  {
+                                      CustomerId = x.Field<string>("CustomerId"),
+                                      CustomerName = x.Field<string>("CustomerName"),
+                                      DisplayName = x.Field<string>("DisplayName"),
+                                  }).ToList();
+            foreach(var item in empList)
+            {
+                if (!string.IsNullOrEmpty(item.DisplayName))
+                {
+                    custList.Add(string.Format("{0}-{1}-{2}", item.CustomerId, (item.CustomerName.Contains("-") ? item.CustomerName.Replace("-", " ") : item.CustomerName), item.DisplayName));
+                }
+            }
+            return custList.ToArray();
+        }
+       
         [WebMethod]
         public static EntityLayer.ItemValues[] GetPickupCategories()
         {
@@ -510,7 +533,13 @@ namespace JobyCoWeb.Booking
             objBooking.StatusDetails = StatusDetails;
             objBooking.PickupCustomerTitle = PickupCustomerTitle;
             objBooking.DeliveryCustomerTitle = DeliveryCustomerTitle;
-
+            BOLogin bOLogin = new BOLogin();
+            if (HttpContext.Current.Session["Login"] != null)
+            {
+                bOLogin = (BOLogin)HttpContext.Current.Session["Login"];
+            }
+            objBooking.CreatedBy = bOLogin.EMAILID.ToString();
+            objBooking.IsRegisteredUser = true;
             objDB.AddBooking(objBooking);
         }
 

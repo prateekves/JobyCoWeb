@@ -26,4 +26,12 @@ namespace EntityLayer
         public string LatitudePickup { get; set; }
         public string LongitudePickup { get; set; }
     }
+    public class CustomerViewModel
+    {
+        public string CustomerId { get; set; }
+        public string CustomerName { get; set; }
+
+        public string DisplayName { get; set; }
+
+    }
 }

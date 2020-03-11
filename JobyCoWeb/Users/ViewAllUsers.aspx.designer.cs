@@ -220,6 +220,42 @@ namespace JobyCoWeb.Users {
         protected global::System.Web.UI.WebControls.TextBox txtTelephone;
         
         /// <summary>
+        /// rbDirectPayroll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbDirectPayroll;
+        
+        /// <summary>
+        /// rbThirdPartyPayroll control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbThirdPartyPayroll;
+        
+        /// <summary>
+        /// rbHourlyBasis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbHourlyBasis;
+        
+        /// <summary>
+        /// rbMonthlyBasis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbMonthlyBasis;
+        
+        /// <summary>
         /// ddlUserRole control.
         /// </summary>
         /// <remarks>

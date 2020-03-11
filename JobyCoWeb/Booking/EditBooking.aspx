@@ -14,17 +14,8 @@
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/6.6.1/firebase.js"></script>
-    <script>
-          // Your web app's Firebase configuration
-          //var firebaseConfig = {
-          //  apiKey: "AIzaSyDIVr61f9nleAhqJhFGMZpHZW9LpwAmaNk",
-          //  authDomain: "jobycoimages.firebaseapp.com",
-          //  databaseURL: "https://jobycoimages.firebaseio.com",
-          //  projectId: "jobycoimages",
-          //  storageBucket: "jobycoimages.appspot.com",
-          //  messagingSenderId: "99926466301",
-          //  appId: "1:99926466301:web:3f2823c97ced3d3839e894"
-        //};
+   <%-- <script>
+         
         // Your web app's Firebase configuration
         var firebaseConfig = {
             apiKey: "AIzaSyA54QLnBT-Qem_nEY52-FuDHwPjxR7pn-E",
@@ -40,11 +31,19 @@
           // Initialize Firebase
           firebase.initializeApp(firebaseConfig);
           firebase.analytics();
-        </script>
+        </script>--%>
     <!-- New Script Added for Dynamic Menu Population
     ================================================== -->    
     <script>
         $(document).ready(function () {
+
+             if (typeof google === 'object' && typeof google.maps === 'object') {
+            InitializeMap();
+        } else {
+            $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyA079i9v8OTWYxstBB53I-nydb8zt1c_tk&libraries=places&callback=InitializeMap', function () {
+                InitializeMap();
+            });
+             }
 
             var hfMenusAccessibleValues = $('#<%=hfMenusAccessible.ClientID%>').val().trim();
             accessibleMenuItems(hfMenusAccessibleValues);
@@ -286,7 +285,7 @@
             var IsExists = 1;
             //Check Duplicate Image
             $('.file_viwer_sec img').each(function () {
-                debugger;
+                
                 var ImageTitle = $(this).attr('title');
                 if (ImageTitle == ImageName) {
                     //alert('Image already added');
@@ -363,7 +362,7 @@
                     var jdata = JSON.parse(result.d);
                     len = jdata.length;
                     //alert(len);
-                    debugger;
+                    
                     //alert(JSON.stringify(jdata));
                     for (var i = 0; i < len; i++) {
                         var structure = $('<div class="mlty_ple_upload"> <i class="fa fa-times-circle remove_images_single" onclick="return deleteImage(this, \'' + jdata[i]['ImagePickupId'] + '\',\'' + jdata[i]['ImageName'] + '\', \'' + jdata[i]['ImageUrl'] + '\',' + num + ', ' + i + ');" aria-hidden="true"></i> <div class="form-group"><label class="add_img_file_aa"><i class="fa fa-upload" aria-hidden="true"></i>Upload File<input type="file" id="FileUpload' + num + '' + i + '" disabled="disabled" size="60" onchange="return displayImage(event, ' + num + ', ' + i + ');" ></label></div><div class="file_viwer_sec"> <img id="ViewImage' + num + '' + i + '" src="' + jdata[i]["ImageUrl"] + '" title="' + jdata[i]["ImageName"] + '" /> </div><div class="apnd_mlty_ple"> <button type="button" class="btn g" style="visibility:hidden;"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add More </button> </div></div>');
@@ -400,7 +399,7 @@
         };
 
         function closeNearestImage(x, i, row) {
-            debugger;
+            
             //$(x).closest("li").css('display', 'none');
             $(x).closest("li").remove();
 
@@ -425,7 +424,7 @@
 
         function getMyTableTotal()
         { 
-            ///debugger;
+            ///
             var vMyTable_PredefinedEstimatedValue_String = "";
             var vMyTable_PredefinedEstimatedValue_Float = 0.0;
 
@@ -488,7 +487,7 @@
                         var newRowContentConfirmation = "";
                         var ChargesType = "";
                         for (var i = 0; i < len; i++) {
-                            ////debugger;
+                            ////
                             var TaxAmount = parseFloat(jdata[i]["TaxAmount"]);
                             var IsPercent = jdata[i]["IsPercent"];
                             ChargesType = jdata[i]["RadioChargesType"].toString();
@@ -644,7 +643,7 @@
         //New Function for Item Count
         function getMyTableItemCount()
         {
-            ////debugger;
+            ////
             var vItemCount = parseInt( $( "#<%=hfItemCount.ClientID%>" ).val().trim() );
             vItemCount--;
 
@@ -866,7 +865,7 @@
 
         function showStep1DataTableMandatoryFields()
         {
-            debugger;
+            
             //alert('showStep1DataTableMandatoryFields');
             var ErrMsg = $( "#<%=lblErrMsg.ClientID%>" );
             ErrMsg.text( '' );
@@ -1475,7 +1474,7 @@
         var PickupItemId = "ddlPickupItem" + ctr.toString();
         
         getPickupItemsByCategoryUsingItemId(PickupCategoryValue, PickupItemId);
-        debugger;
+        
         //New Code Added
         //==========================================================================
         if (PickupItemValue != "" && sPickupItemId == "0") {
@@ -1486,7 +1485,7 @@
         else {
             //$('#' + PickupItemId).find("option:selected").text(PickupItemValue);
             $('#' + PickupItemId + ' option').each(function () {
-                debugger;
+                
                 if ($(this).text() == PickupItemValue) {
                     $(this).attr('selected', 'selected');
                 }
@@ -1664,7 +1663,7 @@
 
     function addRowBookPickup()
     {
-        //debugger;
+        //
         $('#<%=hfChanged.ClientID%>').val('Changed');
 
         counter = parseInt( $( "#<%=hfItemCount.ClientID%>" ).val().trim() );
@@ -1783,7 +1782,7 @@
 
             $( '#myTable' ).on( 'change', '#' + PickupCategoryId, function ()
             {
-                //debugger;
+                //
                 vPickupCategory = $( '#' + PickupCategoryId ).find( "option:selected" ).text().trim();
                 getPredefinedEstimatedValueByCategoryValue( vPickupCategory, PredefinedEstimatedValueId, PickupItemId );
                 
@@ -1828,7 +1827,7 @@
 
             $( '#myTable' ).on( 'change', '#' + PickupItemId, function ()
             {
-                //debugger;
+                //
                 vPickupItem = $( '#' + PickupItemId ).find( "option:selected" ).text().trim();
                 getPredefinedEstimatedValueByItemValue( vPickupItem, PredefinedEstimatedValueId );
                 
@@ -2136,7 +2135,7 @@
             var vConfirmItemsIsFragile = "";
             var vConfirmItemsEstimatedValue = "";
             var vConfirmItemsPredefinedEstimatedValue = "";
-            //debugger;
+            //
             vTableRowLast += "<tr>";
             vTableRowLast += "<td id='tdPickupCategory" + counter.toString() + "'>" + vConfirmItemsPickupCategory + "</td>";
             vTableRowLast += "<td id='tdPickupItem" + counter.toString() + "'>" + vConfirmItemsPickupItem + "</td>";
@@ -2212,7 +2211,7 @@
         }
 
         //function CopyFirstRow(rowCount) {
-        //    debugger;
+        //    
         //    var vMyTable_PickupCategory = "";
         //    var vMyTable_PickupCategoryValue = "";
         //    var vMyTable_PickupItem = "";
@@ -2225,7 +2224,7 @@
         //    var vMyTable_PredefinedEstimatedValue = "";
 
         //    $('#myTable >tbody >tr').each(function (index, val) {
-        //        debugger;
+        //        
 
         //        if (rowCount == val.rowIndex) {
         //            //alert(rowCount + '  ' + val.rowIndex);
@@ -2252,7 +2251,7 @@
         //            //alert(vMyTable_PickupCategory);
 
         //            $('#myTable >tbody >tr').each(function (index, val) {
-        //                debugger;
+        //                
         //                if (rowCount < val.rowIndex) {
         //                    var vMyTable_PickupCategoryId = $(this).closest("tr").find('select:eq(0)').attr("id");
         //                    $('#' + vMyTable_PickupCategoryId).val(vMyTable_PickupCategoryValue);
@@ -2280,7 +2279,7 @@
 
 
         function CopyFirstRow(rowCount) {
-            debugger;
+            
             var vMyTable_PickupCategory = "";
             var vMyTable_PickupCategoryValue = "";
 
@@ -2296,7 +2295,7 @@
             var vMyTable_PredefinedEstimatedValue = "";
 
             $('#myTable >tbody >tr').each(function (index, val) {
-                debugger;
+                
 
                 if (rowCount == val.rowIndex) {
                     //alert(rowCount + '  ' + val.rowIndex);
@@ -2329,7 +2328,7 @@
                     //alert(vMyTable_PickupCategory);
 
                     $('#myTable >tbody >tr').each(function (index, val) {
-                        debugger;
+                        
                         if (rowCount < val.rowIndex) {
                             var vMyTable_PickupCategoryId = $(this).closest("tr").find('select:eq(0)').attr("id");
                             $('#' + vMyTable_PickupCategoryId).val(vMyTable_PickupCategoryValue);
@@ -2469,7 +2468,7 @@
 
     function checkMyPackageDetails()
     {
-        debugger;
+        
         var Customers = $( "#<%=ddlCustomers.ClientID%>" );
         var vCustomers = Customers.find( "option:selected" ).text().trim();
 
@@ -2655,7 +2654,7 @@
         var NoErrorFound = true;
         //==========Check Category In Booking Table
         $('#myTable >tbody >tr').each(function (index, val) {
-            debugger;
+            
             if (index > 0) { 
                 var vMyTable_PickupCategoryId = $(this).closest("tr").find('select:eq(0)').attr("id");
                 var vMyTable_PickupCategory = $(this).closest("tr").find('select:eq(0)').find("option:selected").text().trim();
@@ -3205,7 +3204,7 @@
 
         function uploadImageFile()
             {
-                debugger;
+                
                 var files = "";
                 var OuterLoopCount = 1;
                 var BookingId = $( "#<%=hfEditBookingId.ClientID%>" ).val().trim();
@@ -3213,7 +3212,7 @@
 
                 $( "#tblConfirmItems >tbody >tr" ).each( function ()
                     {
-                        debugger;
+                        
                         var InnerLoopCount = 0;
                         InnerLoopCount = $('#apnd_div' + OuterLoopCount).find('.mlty_ple_upload').length;
                         //alert('OuterLoopCount= ' + OuterLoopCount + ' InnerLoopCount= ' + InnerLoopCount);
@@ -3234,7 +3233,7 @@
                                 var ImageName = BookingId + '-' + files[0].name;
                                 //var ImageUrl = 'https://firebasestorage.googleapis.com/v0/b/jobycoimages.appspot.com/o/images%2F' + BookingId + '-' + files[0].name + '?alt=media';
                                 var ImageUrl = 'https://firebasestorage.googleapis.com/v0/b/jobycodirect.appspot.com/o/images%2F' + BookingId + '-' + files[0].name + '?alt=media';
-                                debugger;
+                                
 
                                 //Save in the Customer Portal
                                 //New Code for Image Insert
@@ -3722,7 +3721,7 @@
 
         function sendEmailAfterConfirmation()
         {
-            debugger;
+            
             
             var hfChanged = $( '#<%=hfChanged.ClientID%>' ).val().trim();
             
@@ -3852,7 +3851,7 @@
 
         function saveBooking()
         {
-            debugger;
+            
             var vErrMsg = $( "#<%=lblErrMsg.ClientID%>" );
             vErrMsg.text( '' );
             vErrMsg.css( "display", "none" );
@@ -4297,7 +4296,7 @@
 
 
         function proceedToPayment() {
-            debugger;
+            
             var sNowTotal = $("#<%=spTotal.ClientID%>").text().trim();
             //$("#<%=spCurrentBill.ClientID%>").text(sNowTotal);
             var fNowTotal = parseFloat(sNowTotal).toFixed(2);
@@ -4350,7 +4349,7 @@
 
                 //Booking Mail
                 //sendBookingByEmail(EmailID, jQueryDataTableContent);
-                debugger;
+                
                 var BookingId = $("#<%=hfEditBookingId.ClientID%>").val().trim();
                         //setTimeout(function () {
                         //    location.href = '/ProceedToPayment.aspx?BookingId=' + BookingId;
@@ -4564,13 +4563,13 @@
             //New Function Added
             function editOrder()
             {
-                debugger;
+                
                 //alert('editOrder');
             var BookingId = $( "#<%=hfEditBookingId.ClientID%>" ).val().trim();
             var CustomerId = $( "#<%=hfEditCustomerId.ClientID%>" ).val().trim();
 
             uploadImageFile();
-            debugger;
+            
             var PickupCategory = "";
             var PickupItem = "";
             var IsFragile = "";
@@ -4591,11 +4590,11 @@
                 dataType: "json",
                 success: function ( result )
                 {
-                    debugger;
+                    
                     //Saving Latest BookPickup Data
                     $( '#tblConfirmItems tbody > tr' ).each( function ()
                     {
-                        debugger;
+                        
                         PickupCategory = $( this ).find( 'td:eq(0)' ).text().trim();
                         PickupItem = $( this ).find( 'td:eq(1)' ).text().trim();
                         IsFragile = $( this ).find( 'td:eq(2)' ).text().trim();
@@ -4647,7 +4646,7 @@
                         ChargesId = $(this).find('td:eq(0)').text().trim();
                         ChargesName = $(this).find('td:eq(1)').text().trim();
                         ChargedAmount = $(this).find('td:eq(2)').text().trim();
-                        debugger;
+                        
                         objCharges = {};
                         objCharges.ChargesId = ChargesId;
                         objCharges.ChargesName = ChargesName;
@@ -4728,7 +4727,7 @@
                         }
                     });
                     //==================================================================
-                    debugger;
+                    
                     var ObjBooking = {};
                     ObjBooking.BookingId = BookingId;
                     ObjBooking.RegisteredCompanyName = RegisteredCompanyName,
@@ -4817,7 +4816,7 @@
                         dataType: "json",
                         success: function ( result )
                         {
-                            debugger;
+                            
                             $.ajax( {
                                 type: "POST",
                                 url: "EditBooking.aspx/SelectRedundentImages",
@@ -4829,7 +4828,7 @@
                                 {
                                     var jdata = JSON.parse(result1.d);
                                     len = jdata.length;
-                                    debugger;
+                                    
                                     for (var i = 0; i < len; i++) {
                                         var ImagePickupId = jdata[i]["ImagePickupId"];
                                         var ImageName = jdata[i]["ImageName"];
@@ -4890,13 +4889,13 @@
                         },
                         error: function ( response )
                         {
-                            debugger;
+                            
                         }
                     } );//end of 'Updating Booking Details'
                 },
                 error: function ( response )
                 {
-                    debugger;
+                    
                 }
             } );//end of 'Removing Old BookPickup Data'
 
@@ -4922,17 +4921,11 @@
     </style>
 
     <script>
-        if (typeof google === 'object' && typeof google.maps === 'object') {
-            InitializeMap();
-        } else {
-            $.getScript('https://maps.googleapis.com/maps/api/js?key=AIzaSyA079i9v8OTWYxstBB53I-nydb8zt1c_tk&libraries=places&callback=InitializeMap', function () {
-                InitializeMap();
-            });
-        }
+       
 
         function InitializeMap()
         {
-            debugger;
+            
 
             var PLat = $("#<%=hfPickupLatitude.ClientID%>").val();
             var Plong = $("#<%=hfPickupLongitude.ClientID%>").val();

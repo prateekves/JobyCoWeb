@@ -58,13 +58,22 @@ namespace JobyCoWeb.Booking {
         protected global::System.Web.UI.WebControls.Label lblLoggedInUser;
         
         /// <summary>
-        /// ddlCustomers control.
+        /// txtcustomers control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::DropDownListChosen.DropDownListChosen ddlCustomers;
+        protected global::System.Web.UI.WebControls.TextBox txtcustomers;
+        
+        /// <summary>
+        /// hdnEmpId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnEmpId;
         
         /// <summary>
         /// ddlAddress control.

@@ -69,5 +69,8 @@ namespace EntityLayer
         public string PaymentNotes { get; set; }
         public string Reason { get; set; }
         public string IsDefault { get; set; }
+
+        public bool IsRegisteredUser { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

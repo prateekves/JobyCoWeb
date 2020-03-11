@@ -45,7 +45,7 @@ CodeBehind="AddCustomer.aspx.cs" Inherits="JobyCoWeb.Customers.AddCustomer"
 
         function InitializeMap()
         {
-                debugger;
+                
 
                 var PLat = $("#<%=hfPickupLatitude.ClientID%>").val();
                 var Plong = $("#<%=hfPickupLongitude.ClientID%>").val();
@@ -121,7 +121,7 @@ CodeBehind="AddCustomer.aspx.cs" Inherits="JobyCoWeb.Customers.AddCustomer"
             geocoder.geocode({ 'address': address }, function (results, status) {
 
                 if (status == google.maps.GeocoderStatus.OK) {
-                    //debugger;
+                    //
                     var latitude = results[0].geometry.location.latitude;
                     var longitude = results[0].geometry.location.longitude;
                     //2nd Block
@@ -132,7 +132,7 @@ CodeBehind="AddCustomer.aspx.cs" Inherits="JobyCoWeb.Customers.AddCustomer"
                                 geocoder.geocode({ 'address': address }, function (results, status) {
 
                                     if (status == google.maps.GeocoderStatus.OK) {
-                                        //debugger;
+                                        //
                                         var latitude = results[0].geometry.location.latitude;
                                         var longitude = results[0].geometry.location.longitude;
                                         //alert(latitude);
@@ -271,7 +271,7 @@ CodeBehind="AddCustomer.aspx.cs" Inherits="JobyCoWeb.Customers.AddCustomer"
             geocoder.geocode({ 'address': address }, function (results, status) {
 
                 if (status == google.maps.GeocoderStatus.OK) {
-                    //debugger;
+                    //
                     var latitude = results[0].geometry.location.latitude;
                     var longitude = results[0].geometry.location.longitude;
                     //2nd Block
@@ -282,7 +282,7 @@ CodeBehind="AddCustomer.aspx.cs" Inherits="JobyCoWeb.Customers.AddCustomer"
                                 geocoder.geocode({ 'address': address }, function (results, status) {
 
                                     if (status == google.maps.GeocoderStatus.OK) {
-                                        //debugger;
+                                        //
                                         var latitude = results[0].geometry.location.latitude;
                                         var longitude = results[0].geometry.location.longitude;
                                         //alert(latitude);
@@ -593,7 +593,7 @@ CodeBehind="AddCustomer.aspx.cs" Inherits="JobyCoWeb.Customers.AddCustomer"
             async:false,
             success: function (result) {
                 $( "#<%=hfCustomerIdFromEmailId.ClientID%>" ).val( result.d );   
-                debugger;
+                
                 if ($("#<%=hfCustomerIdFromEmailId.ClientID%>").val().trim() == "True") {
                     vErrMsg.text('This Email Address already Exists. Try another');
                     vErrMsg.css("display", "block");
@@ -763,7 +763,7 @@ CodeBehind="AddCustomer.aspx.cs" Inherits="JobyCoWeb.Customers.AddCustomer"
 
     function saveCustomerDetails()
     {
-        debugger;
+        
         var EmailID = $("#<%=txtEmailID.ClientID%>");
         var vEmailID = EmailID.val().trim();
 
